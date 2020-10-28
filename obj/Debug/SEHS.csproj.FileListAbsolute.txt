@@ -1,0 +1,13 @@
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\SEHS.exe.config
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\SEHS.exe
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\SEHS.pdb
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.Form1.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.Properties.Resources.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.GenerateResource.cache
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.CoreCompileInputs.cache
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.exe
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.pdb
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl1.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl2.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl3.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl4.resources
