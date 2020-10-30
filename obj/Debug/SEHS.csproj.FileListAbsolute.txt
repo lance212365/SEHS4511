@@ -11,3 +11,18 @@ C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl1.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl2.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl3.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.UserControl4.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\bin\Debug\SEHS.exe.config
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\bin\Debug\SEHS.exe
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\bin\Debug\SEHS.pdb
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.Form1.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.login.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.Properties.Resources.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.UserControl1.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.UserControl2.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.UserControl3.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.UserControl4.resources
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.csproj.GenerateResource.cache
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.csproj.CoreCompileInputs.cache
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.exe
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.pdb
+C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.csprojAssemblyReference.cache

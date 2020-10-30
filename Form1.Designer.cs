@@ -183,6 +183,7 @@
             // panel2
             // 
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
             this.panel2.Controls.Add(this.userControl4);
             this.panel2.Controls.Add(this.userControl3);
             this.panel2.Controls.Add(this.userControl2);
@@ -200,6 +201,7 @@
             this.userControl4.Name = "userControl4";
             this.userControl4.Size = new System.Drawing.Size(1078, 730);
             this.userControl4.TabIndex = 6;
+            this.userControl4.Load += new System.EventHandler(this.userControl4_Load);
             // 
             // userControl3
             // 
