@@ -59,11 +59,6 @@ namespace SEHS
             View.BackColor = Color.Transparent;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -114,6 +109,16 @@ namespace SEHS
         private void button4_MouseLeave(object sender, EventArgs e)
         {
             button4.BackColor = Color.Transparent;
+        }
+
+        private void userControl4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
