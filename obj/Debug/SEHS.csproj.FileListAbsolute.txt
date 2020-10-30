@@ -26,3 +26,18 @@ C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEM
 C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.exe
 C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.pdb
 C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEMS\Assignment\Group\SEHS4511-main\obj\Debug\SEHS.csprojAssemblyReference.cache
+C:\Users\yeung\Source\Repos\SEHS4511\bin\Debug\SEHS.exe.config
+C:\Users\yeung\Source\Repos\SEHS4511\bin\Debug\SEHS.exe
+C:\Users\yeung\Source\Repos\SEHS4511\bin\Debug\SEHS.pdb
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.csprojAssemblyReference.cache
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Form1.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.login.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Properties.Resources.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.UserControl1.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.UserControl2.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.UserControl3.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.UserControl4.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.GenerateResource.cache
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.CoreCompileInputs.cache
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.exe
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.pdb
