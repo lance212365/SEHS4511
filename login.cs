@@ -81,8 +81,9 @@ namespace SEHS
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        us.Add(reader["UID"]);
-                        ps.Add(reader["Password"]);
+                        // if wrong change to number, sleep for now
+                        us.Add(reader["UID"].ToString());
+                        ps.Add(reader["Password"].ToString());
                     }
                     if (us.Contains(UID))
                     {
@@ -94,7 +95,7 @@ namespace SEHS
                         }
                         else
                         {
-                            //wrong pw code
+                            //wrong pw code3
                             MessageBox.Show("Wrong!");
                         }
                             MessageBox.Show($"Finished executing Insert,ID:{data}",
