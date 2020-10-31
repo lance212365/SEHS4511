@@ -51,8 +51,8 @@ namespace SEHS
         private void button1_Click(object sender, EventArgs e)
         {
             string query;
-            string UID = $"{textBox1.Text.ToString()}";
-            string Password = $"{textBox2.Text.ToString()}"; 
+            string UID = $"{textBox1.Text}";
+            string Password = $"{textBox2.Text}"; 
 
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
@@ -82,8 +82,8 @@ namespace SEHS
                     while (reader.Read())
                     {
                         // if wrong change to number, sleep for now
-                        us.Add(reader["UID"].ToString());
-                        ps.Add(reader["Password"].ToString());
+                        us.Add(reader[UID].ToString());
+                        ps.Add(reader[Password].ToString());
                     }
                     if (us.Contains(UID))
                     {
