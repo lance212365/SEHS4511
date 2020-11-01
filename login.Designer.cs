@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.loginBox1 = new System.Windows.Forms.GroupBox();
-            this.cTextBox1 = new ChreneLib.Controls.TextBoxes.CTextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -60,7 +59,6 @@
             this.loginBox1.Controls.Add(this.button1);
             this.loginBox1.Controls.Add(this.textBox2);
             this.loginBox1.Controls.Add(this.textBox1);
-            this.loginBox1.Controls.Add(this.cTextBox1);
             this.loginBox1.Font = new System.Drawing.Font("Century Gothic", 18F);
             this.loginBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.loginBox1.Location = new System.Drawing.Point(183, 163);
@@ -69,20 +67,6 @@
             this.loginBox1.TabIndex = 1;
             this.loginBox1.TabStop = false;
             this.loginBox1.Text = "Login";
-            // 
-            // cTextBox1
-            // 
-            this.cTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.cTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cTextBox1.Location = new System.Drawing.Point(139, 18);
-            this.cTextBox1.Name = "cTextBox1";
-            this.cTextBox1.Size = new System.Drawing.Size(239, 30);
-            this.cTextBox1.TabIndex = 4;
-            this.cTextBox1.WaterMark = "Enter Your UID";
-            this.cTextBox1.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
-            this.cTextBox1.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
-            this.cTextBox1.WaterMarkForeColor = System.Drawing.Color.LightGray;
-            this.cTextBox1.TextChanged += new System.EventHandler(this.cTextBox1_TextChanged);
             // 
             // pictureBox6
             // 
@@ -128,8 +112,10 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Transparent;
             this.button1.Location = new System.Drawing.Point(173, 201);
             this.button1.Name = "button1";
@@ -142,23 +128,24 @@
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox2.Location = new System.Drawing.Point(139, 126);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(239, 30);
             this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox1.Location = new System.Drawing.Point(139, 54);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(239, 30);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // pictureBox1
             // 
@@ -223,7 +210,5 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
     }
-
 }

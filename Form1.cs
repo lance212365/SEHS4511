@@ -11,9 +11,7 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
-
-
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.Remoting.Messaging;
 
 namespace SEHS
 {
@@ -70,55 +68,49 @@ namespace SEHS
 
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fname);
-            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = (Excel.Worksheet)xlWorkbook.Worksheets.get_Item(4);
+            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[4];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            // dt.Column = colCount;
+            int rowCount = 16;
+            int colCount = 16;
 
-            int[] cntRows = {1};
-            bool[] stopLoop = {false};
-
-            for (int i = 1; i <= xlRange.Rows.Count; i++)
-            {
-                for (int j = 1; j <= xlRange.Columns.Count; j++)
-                {
-                    if (xlRange.Cells[i, j].Value2 == "End")
-                    {
-                        cntRows[0] = i;
-                        stopLoop[0] = true;
-                        break;
-                    }
-                }
-                if (stopLoop[0])
-                {
-                    break;
-                }
-            }
-
+            // dt.Column = colCount;  
             userControl2.dataGridView1.ColumnCount = 16;
-            userControl2.dataGridView1.RowCount = cntRows[0];
+            userControl2.dataGridView1.RowCount = 16;
 
+            //stop the loop
+            bool loop = false;
 
-            for (int i = 1; i <= xlRange.Rows.Count; i++)
+            for (int i = 1; i <= rowCount; i++)
             {
-                for (int j = 1; j <= xlRange.Columns.Count; j++)
+                for (int j = 1; j <= colCount; j++)
                 {
 
-                    //MessageBox.Show(xlRange.Columns.Count.ToString());
+
                     //write the value to the Grid  
 
 
-                    //if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
-                    //{
-                    if (xlRange.Cells[i, j].Value2 == null)
+                    if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                    {
+                        if (xlRange.Cells[i, j].Value2.ToString() == "End")
+                        {
+                            loop = true;
+                            break;
+                        }
+                        else
+                        {
+                            userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
+                        }
+
+                    }
+                    else
                     {
                         try
                         {
                             if (i > 3 && j == 7)
                             {
                                 userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
-                            }
-                            else if (i > 3 && j == 9)
+                            }else if(i > 3 && j == 9)
                             {
                                 userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
                             }
@@ -139,22 +131,17 @@ namespace SEHS
                         {
                             Console.Write(ex);
                         }
-                        userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = "";
-                    } else if (xlRange.Cells[i, j].Value2 == "End")
-                    {
-                        return;
-                    } else
-                    {
-                        userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
-                    }
-
-
-                    //}
+                    }   
                     // Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");  
 
-                    //add useful things here! 
+                    //add useful things here!     
+                }
+                if (loop)
+                {
+                    break;
                 }
             }
+
 
             //cleanup  
             GC.Collect();
@@ -175,9 +162,17 @@ namespace SEHS
             //quit and release  
             xlApp.Quit();
             Marshal.ReleaseComObject(xlApp);
+
+            
+
+            
+        }
+        public class ClassName
+        {
+            public string Col1 { get; set; }
         }
 
-        private DataGridViewComboBoxCell loadcombobox(int row, int col)
+        private DataGridViewComboBoxCell loadcombobox(int row,int col)
         {
             DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
             string query = "SELECT CONCAT(FirstName,LastName)AS Name FROM TFHR.dbo.Staff";
@@ -208,6 +203,7 @@ namespace SEHS
             }
             return comboBoxCell;
         }
+        
 
         private void button3_Click(object sender, EventArgs e)
         {

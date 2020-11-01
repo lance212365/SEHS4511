@@ -27,20 +27,9 @@ namespace SEHS
         {
             textBox1.BackColor = this.BackColor;
             textBox2.BackColor = this.BackColor;
-            cTextBox1.BackColor = this.BackColor;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -49,16 +38,14 @@ namespace SEHS
         {
             string query;
             string UID = $"{textBox1.Text}";
-            string Password = $"{textBox2.Text}"; 
+            string Password = $"{textBox2.Text}";
 
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
                 SqlCommand cmd = connection.CreateCommand();
                 try
-                {  
-                    // same way
+                {
                     query = $"SELECT * FROM TFHR.dbo.Staff where UID='{UID}'";
-                    // show where?
                     cmd.CommandText = query;
                     connection.Open();
                     cmd.ExecuteScalar();
@@ -78,29 +65,27 @@ namespace SEHS
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        // if wrong change to number, sleep for now
-                        // use  quotes bracket for these key-indexed index.
                         us.Add(reader["UID"].ToString());
                         ps.Add(reader["Password"].ToString());
                         name = reader["FirstName"].ToString();
                     }
                     if (us.Contains(UID))
                     {
-                        if(Password == ps[us.IndexOf(UID)])
+                        if (Password == ps[us.IndexOf(UID)])
                         {
                             MessageBox.Show($"Welcome! {name}!",
                             "Note",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                             this.Hide();
-                            new Form1().Show();              
+                            new Form1().Show();
                         }
                         else
                         {
-                            //wrong pw code3
                             MessageBox.Show("Wrong!");
                         }
-                    } else
+                    }
+                    else
                     {
                         // Enter user not found code here.
                         // testing?
@@ -115,9 +100,11 @@ namespace SEHS
             //Test
 
             // what's this
-            if (textBox1.Text == "") {
+            if (textBox1.Text == "")
+            {
                 MessageBox.Show("Please enter your UID.");
-            } else
+            }
+            else
             {
                 // sql connection need tcf, this works like promise from ES6
                 // but since C# is java based, so try catch is basically the things being here
@@ -138,14 +125,22 @@ namespace SEHS
 
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
+        private void textBox1_Leave(object sender, EventArgs e)
         {
-            
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "Enter UID here";
+                textBox1.ForeColor = Color.Gray;
+            }
         }
 
-        private void cTextBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_Enter(object sender, EventArgs e)
         {
-
+            if (textBox1.Text == "Enter UID here")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = Color.White;
+            }
         }
     }
 }
