@@ -102,7 +102,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 32);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 29);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(275, 119);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -120,9 +120,9 @@
             this.button4.ForeColor = System.Drawing.Color.Transparent;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.Location = new System.Drawing.Point(0, 492);
+            this.button4.Location = new System.Drawing.Point(0, 480);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(275, 73);
+            this.button4.Size = new System.Drawing.Size(275, 98);
             this.button4.TabIndex = 3;
             this.button4.Text = "View Center Feeder";
             this.button4.UseVisualStyleBackColor = false;
@@ -160,11 +160,11 @@
             this.button2.ForeColor = System.Drawing.Color.Transparent;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.Location = new System.Drawing.Point(0, 277);
+            this.button2.Location = new System.Drawing.Point(3, 277);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(272, 73);
+            this.button2.Size = new System.Drawing.Size(272, 91);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Import seed file";
+            this.button2.Text = "update department feeder";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             this.button2.MouseEnter += new System.EventHandler(this.button2_MouseEnter);
