@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 
 namespace SEHS
 {
@@ -70,12 +71,12 @@ namespace SEHS
             Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[4];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            int rowCount = 20;
-            int colCount = 100;
+            int rowCount = 16;
+            int colCount = 16;
 
             // dt.Column = colCount;  
-            userControl2.dataGridView1.ColumnCount = 20;
-            userControl2.dataGridView1.RowCount = 100;
+            userControl2.dataGridView1.ColumnCount = 16;
+            userControl2.dataGridView1.RowCount = 16;
 
             //stop the loop
             bool loop = false;
@@ -91,7 +92,7 @@ namespace SEHS
 
                     if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
                     {
-                        if(xlRange.Cells[i, j].Value2.ToString() == "End")
+                        if (xlRange.Cells[i, j].Value2.ToString() == "End")
                         {
                             loop = true;
                             break;
@@ -100,8 +101,37 @@ namespace SEHS
                         {
                             userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                         }
-                        
+
                     }
+                    else
+                    {
+                        try
+                        {
+                            if (i > 3 && j == 7)
+                            {
+                                userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
+                            }else if(i > 3 && j == 9)
+                            {
+                                userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
+                            }
+                            else if (i > 3 && j == 11)
+                            {
+                                userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
+                            }
+                            else if (i > 3 && j == 13)
+                            {
+                                userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
+                            }
+                            else if (i > 3 && j == 15)
+                            {
+                                userControl2.dataGridView1.Rows[i - 1].Cells[j - 1] = loadcombobox(i, j);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Write(ex);
+                        }
+                    }   
                     // Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");  
 
                     //add useful things here!     
@@ -111,6 +141,7 @@ namespace SEHS
                     break;
                 }
             }
+
 
             //cleanup  
             GC.Collect();
@@ -132,9 +163,47 @@ namespace SEHS
             xlApp.Quit();
             Marshal.ReleaseComObject(xlApp);
 
+            
 
-
+            
         }
+        public class ClassName
+        {
+            public string Col1 { get; set; }
+        }
+
+        private DataGridViewComboBoxCell loadcombobox(int row,int col)
+        {
+            DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
+            string query = "SELECT CONCAT(FirstName,LastName)AS Name FROM TFHR.dbo.Staff";
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            {
+                SqlCommand cmd = connection.CreateCommand();
+                try
+                {
+                    cmd.CommandText = query;
+                    connection.Open();
+                    cmd.ExecuteScalar();
+                    System.Data.DataTable dt = new System.Data.DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    comboBoxCell.DataSource = dt;
+                    comboBoxCell.DisplayMember = "Name";
+                    comboBoxCell.ValueMember = "Name";
+                    da.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(cmd.CommandText,
+                               "SQL Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+                }
+                connection.Close();
+            }
+            return comboBoxCell;
+        }
+        
 
         private void button3_Click(object sender, EventArgs e)
         {
