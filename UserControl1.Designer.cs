@@ -183,6 +183,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(85, 350);
             this.dataGridView2.MaximumSize = new System.Drawing.Size(897, 290);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(897, 290);
             this.dataGridView2.TabIndex = 4;

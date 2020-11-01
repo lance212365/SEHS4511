@@ -25,7 +25,8 @@ namespace SEHS
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            textBox1.BackColor = this.BackColor;
+            textBox2.BackColor = this.BackColor;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -77,7 +78,7 @@ namespace SEHS
                 {
                     List<string> us = new List<string>();
                     List<string> ps = new List<string>();
-                    string data = "";
+                    string name = "";
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -85,12 +86,13 @@ namespace SEHS
                         // use  quotes bracket for these key-indexed index.
                         us.Add(reader["UID"].ToString());
                         ps.Add(reader["Password"].ToString());
+                        name = reader["FirstName"].ToString();
                     }
                     if (us.Contains(UID))
                     {
                         if(Password == ps[us.IndexOf(UID)])
                         {
-                            MessageBox.Show($"Welcome! {UID}",
+                            MessageBox.Show($"Welcome! {name}!",
                             "Note",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
@@ -128,6 +130,16 @@ namespace SEHS
                 // tcf is an async function.
                 // 
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
