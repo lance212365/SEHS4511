@@ -79,3 +79,9 @@ C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.xml
 C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\yeung\source\repos\SEHS4511\bin\Debug\zh-Hant\EntityFramework.resources.dll
 C:\Users\yeung\source\repos\SEHS4511\obj\Debug\SEHS.csproj.CopyComplete
+C:\Users\Jimwa\Documents\SEHS4511_project\bin\Debug\EntityFramework.dll
+C:\Users\Jimwa\Documents\SEHS4511_project\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jimwa\Documents\SEHS4511_project\bin\Debug\EntityFramework.xml
+C:\Users\Jimwa\Documents\SEHS4511_project\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jimwa\Documents\SEHS4511_project\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\Jimwa\Documents\SEHS4511_project\obj\Debug\SEHS.csproj.CopyComplete
