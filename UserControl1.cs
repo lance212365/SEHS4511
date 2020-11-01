@@ -17,31 +17,32 @@ namespace SEHS
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        public void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
+        public void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

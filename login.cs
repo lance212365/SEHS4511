@@ -82,27 +82,26 @@ namespace SEHS
                     while (reader.Read())
                     {
                         // if wrong change to number, sleep for now
-                        us.Add(reader[UID].ToString());
-                        ps.Add(reader[Password].ToString());
+                        // use  quotes bracket for these key-indexed index.
+                        us.Add(reader["UID"].ToString());
+                        ps.Add(reader["Password"].ToString());
                     }
                     if (us.Contains(UID))
                     {
                         if(Password == ps[us.IndexOf(UID)])
                         {
-                            //right pw code
-                            // no code is here?
-                            MessageBox.Show("Good!");
+                            MessageBox.Show($"Welcome! {UID}",
+                            "Note",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                            this.Hide();
+                            new Form1().Show();              
                         }
                         else
                         {
                             //wrong pw code3
                             MessageBox.Show("Wrong!");
                         }
-                            MessageBox.Show($"Finished executing Insert,ID:{data}",
-                           "Note",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Information);
-
                     } else
                     {
                         // Enter user not found code here.

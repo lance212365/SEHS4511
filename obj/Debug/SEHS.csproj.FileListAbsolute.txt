@@ -72,3 +72,10 @@ C:\Users\Jimwa\Documents\SEHS4511_project\obj\Debug\SEHS.csproj.CoreCompileInput
 C:\Users\Jimwa\Documents\SEHS4511_project\obj\Debug\SEHS.exe
 C:\Users\Jimwa\Documents\SEHS4511_project\obj\Debug\SEHS.pdb
 C:\Users\Jimwa\Documents\SEHS4511_project\obj\Debug\SEHS.csproj.ResolveComReference.cache
+C:\Users\yeung\source\repos\SEHS4511\obj\Debug\SEHS.csproj.ResolveComReference.cache
+C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.dll
+C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.xml
+C:\Users\yeung\source\repos\SEHS4511\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\yeung\source\repos\SEHS4511\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\yeung\source\repos\SEHS4511\obj\Debug\SEHS.csproj.CopyComplete

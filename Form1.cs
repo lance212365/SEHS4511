@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,13 +28,40 @@ namespace SEHS
         private void button1_Click(object sender, EventArgs e)
         {
             hideAllAndShow(0);
+            string query = "SELECT * FROM TFHR.dbo.Staff";
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            {
+                SqlCommand cmd = connection.CreateCommand();
+                try
+                {
+                    cmd.CommandText = query;
+                    connection.Open();
+                    cmd.ExecuteScalar();
+                    System.Data.DataTable dt = new System.Data.DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    userControl1.dataGridView2.DataSource = dt;
+                    da.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(cmd.CommandText,
+                               "SQL Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+                }
+                connection.Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //hideAllAndShow(1);
+            hideAll(); // Still need to hide all usercontrol
+
+            dataGridView1.Show();
             String path = Directory.GetCurrentDirectory();
-            String fname = "C:\\Users\\Jimwa\\Desktop\\Seed.xlsx";
+            String fname = "http://dev.elderlyinhome.org/Seed.xlsx";
             
 
 
@@ -42,11 +70,11 @@ namespace SEHS
             Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[4];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            int rowCount = xlRange.Rows.Count;
-            int colCount = xlRange.Columns.Count;
+            int rowCount = 20;
+            int colCount = 100;
 
             // dt.Column = colCount;  
-            dataGridView1.ColumnCount = 100;
+            dataGridView1.ColumnCount = 20;
             dataGridView1.RowCount = 100;
 
             //stop the loop
@@ -70,7 +98,7 @@ namespace SEHS
                         }
                         else
                         {
-                            dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
+                               dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                         }
                         
                     }
@@ -148,6 +176,7 @@ namespace SEHS
         }
         public void hideAll()
         {
+            dataGridView1.Hide();
             foreach (var x in UserControlList())
             {
                 x.Hide();
