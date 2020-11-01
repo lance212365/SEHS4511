@@ -49,7 +49,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.label1);
             this.Name = "UserControl3";
-            this.Size = new System.Drawing.Size(793, 510);
+            this.Size = new System.Drawing.Size(798, 510);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+using System.IO;
 
 namespace SEHS
 {
@@ -28,7 +31,81 @@ namespace SEHS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            hideAllAndShow(1);
+            //hideAllAndShow(1);
+            String path = Directory.GetCurrentDirectory();
+            String fname = "C:\\Users\\Jimwa\\Desktop\\Seed.xlsx";
+            
+
+
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fname);
+            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[4];
+            Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            int rowCount = xlRange.Rows.Count;
+            int colCount = xlRange.Columns.Count;
+
+            // dt.Column = colCount;  
+            dataGridView1.ColumnCount = 100;
+            dataGridView1.RowCount = 100;
+
+            //stop the loop
+            bool loop = false;
+
+            for (int i = 1; i <= rowCount; i++)
+            {
+                for (int j = 1; j <= colCount; j++)
+                {
+
+
+                    //write the value to the Grid  
+
+
+                    if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                    {
+                        if(xlRange.Cells[i, j].Value2.ToString() == "End")
+                        {
+                            loop = true;
+                            break;
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
+                        }
+                        
+                    }
+                    // Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");  
+
+                    //add useful things here!     
+                }
+                if (loop)
+                {
+                    break;
+                }
+            }
+
+            //cleanup  
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            //rule of thumb for releasing com objects:  
+            //  never use two dots, all COM objects must be referenced and released individually  
+            //  ex: [somthing].[something].[something] is bad  
+
+            //release com objects to fully kill excel process from running in the background  
+            Marshal.ReleaseComObject(xlRange);
+            Marshal.ReleaseComObject(xlWorksheet);
+
+            //close and release  
+            xlWorkbook.Close();
+            Marshal.ReleaseComObject(xlWorkbook);
+
+            //quit and release  
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlApp);
+
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -41,7 +118,7 @@ namespace SEHS
         }
         private void buttonQuit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -117,6 +194,11 @@ namespace SEHS
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
