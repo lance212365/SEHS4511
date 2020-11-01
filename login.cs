@@ -82,7 +82,7 @@ namespace SEHS
                         }
                         else
                         {
-                            MessageBox.Show("Wrong!");
+                            MessageBox.Show("Wrong Password!");
                         }
                     }
                     else
