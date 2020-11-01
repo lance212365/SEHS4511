@@ -27,6 +27,7 @@ namespace SEHS
         {
             textBox1.BackColor = this.BackColor;
             textBox2.BackColor = this.BackColor;
+            cTextBox1.BackColor = this.BackColor;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -35,11 +36,6 @@ namespace SEHS
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void usernameLabel1_Click(object sender, EventArgs e)
         {
 
         }
@@ -138,6 +134,16 @@ namespace SEHS
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
