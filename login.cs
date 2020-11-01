@@ -95,7 +95,7 @@ namespace SEHS
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                             this.Hide();
-                            new Form1().Show();              
+                            new Form1().Show();            
                         }
                         else
                         {
