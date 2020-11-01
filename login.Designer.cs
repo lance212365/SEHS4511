@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.loginBox1 = new System.Windows.Forms.GroupBox();
+            this.cTextBox2 = new ChreneLib.Controls.TextBoxes.CTextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cTextBox1 = new ChreneLib.Controls.TextBoxes.CTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -57,8 +57,8 @@
             this.loginBox1.Controls.Add(this.pictureBox4);
             this.loginBox1.Controls.Add(this.pictureBox2);
             this.loginBox1.Controls.Add(this.button1);
-            this.loginBox1.Controls.Add(this.textBox2);
-            this.loginBox1.Controls.Add(this.textBox1);
+            this.loginBox1.Controls.Add(this.cTextBox1);
+            this.loginBox1.Controls.Add(this.cTextBox2);
             this.loginBox1.Font = new System.Drawing.Font("Century Gothic", 18F);
             this.loginBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.loginBox1.Location = new System.Drawing.Point(183, 163);
@@ -67,6 +67,21 @@
             this.loginBox1.TabIndex = 1;
             this.loginBox1.TabStop = false;
             this.loginBox1.Text = "Login";
+            // 
+            // cTextBox2
+            // 
+            this.cTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.cTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cTextBox2.ForeColor = System.Drawing.SystemColors.Window;
+            this.cTextBox2.Location = new System.Drawing.Point(139, 126);
+            this.cTextBox2.Name = "cTextBox2";
+            this.cTextBox2.PasswordChar = '*';
+            this.cTextBox2.Size = new System.Drawing.Size(239, 30);
+            this.cTextBox2.TabIndex = 8;
+            this.cTextBox2.WaterMark = "Enter Password here";
+            this.cTextBox2.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
+            this.cTextBox2.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
+            this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.LightGray;
             // 
             // pictureBox6
             // 
@@ -125,27 +140,19 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox2
+            // cTextBox1
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(139, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(239, 30);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(139, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 30);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.cTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.cTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cTextBox1.ForeColor = System.Drawing.SystemColors.Window;
+            this.cTextBox1.Location = new System.Drawing.Point(139, 54);
+            this.cTextBox1.Name = "cTextBox1";
+            this.cTextBox1.Size = new System.Drawing.Size(239, 30);
+            this.cTextBox1.TabIndex = 8;
+            this.cTextBox1.WaterMark = "Enter UID here";
+            this.cTextBox1.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
+            this.cTextBox1.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
+            this.cTextBox1.WaterMarkForeColor = System.Drawing.Color.LightGray;
             // 
             // pictureBox1
             // 
@@ -200,8 +207,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox loginBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -210,5 +215,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
+        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox2;
     }
 }

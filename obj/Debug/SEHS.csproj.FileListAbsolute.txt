@@ -95,4 +95,3 @@ C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\zh-Hant\EntityFramework.resources
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.ResolveComReference.cache
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.CopyComplete
 C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\ChreneLib.dll
-C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csprojAssemblyReference.cache

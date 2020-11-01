@@ -25,8 +25,8 @@ namespace SEHS
 
         private void Login_Load(object sender, EventArgs e)
         {
-            textBox1.BackColor = this.BackColor;
-            textBox2.BackColor = this.BackColor;
+            cTextBox1.BackColor = this.BackColor;
+            cTextBox2.BackColor = this.BackColor;
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -37,8 +37,8 @@ namespace SEHS
         private void button1_Click(object sender, EventArgs e)
         {
             string query;
-            string UID = $"{textBox1.Text}";
-            string Password = $"{textBox2.Text}";
+            string UID = $"{cTextBox1.Text}";
+            string Password = $"{cTextBox2.Text}";
 
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
@@ -100,7 +100,7 @@ namespace SEHS
             //Test
 
             // what's this
-            if (textBox1.Text == "")
+            if (cTextBox1.Text == "")
             {
                 MessageBox.Show("Please enter your UID.");
             }
@@ -123,24 +123,6 @@ namespace SEHS
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "")
-            {
-                textBox1.Text = "Enter UID here";
-                textBox1.ForeColor = Color.Gray;
-            }
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "Enter UID here")
-            {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.White;
-            }
         }
     }
 }
