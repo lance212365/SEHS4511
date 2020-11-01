@@ -56,10 +56,10 @@ namespace SEHS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //hideAllAndShow(1);
-            hideAll(); // Still need to hide all usercontrol
+            hideAllAndShow(1);
+            //hideAll(); // Still need to hide all usercontrol
 
-            dataGridView1.Show();
+            userControl2.dataGridView1.Show();
             String path = Directory.GetCurrentDirectory();
             String fname = "http://dev.elderlyinhome.org/Seed.xlsx";
             
@@ -74,8 +74,8 @@ namespace SEHS
             int colCount = 100;
 
             // dt.Column = colCount;  
-            dataGridView1.ColumnCount = 20;
-            dataGridView1.RowCount = 100;
+            userControl2.dataGridView1.ColumnCount = 20;
+            userControl2.dataGridView1.RowCount = 100;
 
             //stop the loop
             bool loop = false;
@@ -98,7 +98,7 @@ namespace SEHS
                         }
                         else
                         {
-                               dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
+                            userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                         }
                         
                     }
@@ -176,7 +176,6 @@ namespace SEHS
         }
         public void hideAll()
         {
-            dataGridView1.Hide();
             foreach (var x in UserControlList())
             {
                 x.Hide();
