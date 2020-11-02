@@ -26,7 +26,8 @@ namespace SEHS
         private void Login_Load(object sender, EventArgs e)
         {
             cTextBox1.BackColor = this.BackColor;
-            cTextBox2.BackColor = this.BackColor;
+            cTextBox2.BackColor = this.BackColor;     
+
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -40,81 +41,74 @@ namespace SEHS
             string UID = $"{cTextBox1.Text}";
             string Password = $"{cTextBox2.Text}";
 
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
-            {
-                SqlCommand cmd = connection.CreateCommand();
-                try
-                {
-                    query = $"SELECT * FROM TFHR.dbo.Staff where UID='{UID}'";
-                    cmd.CommandText = query;
-                    connection.Open();
-                    cmd.ExecuteScalar();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(cmd.CommandText,
-                               "SQL Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    List<string> us = new List<string>();
-                    List<string> ps = new List<string>();
-                    string name = "";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        us.Add(reader["UID"].ToString());
-                        ps.Add(reader["Password"].ToString());
-                        name = reader["FirstName"].ToString();
-                    }
-                    if (us.Contains(UID))
-                    {
-                        if (Password == ps[us.IndexOf(UID)])
-                        {
-                            MessageBox.Show($"Welcome! {name}!",
-                            "Note",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                            this.Hide();
-                            Form1 form1 = new Form1();
-                            form1.ShowDialog();
-                            form1 = null;
-                            Show();
-                        }   
-                        else
-                        {
-                            MessageBox.Show("Wrong Password!");
-                        }
-                    }
-                    else
-                    {
-                        // Enter user not found code here.
-                        // testing?
-
-                        MessageBox.Show("Wrong UID");
-                    }
-                    cmd.Dispose();
-                }
-                connection.Close();
-            }
-
-            //Test
-
             // what's this
             if (cTextBox1.Text == "")
             {
                 MessageBox.Show("Please enter your UID.");
+            } else if (cTextBox2.Text == "") {
+                MessageBox.Show("Please enter your Password.");
             }
             else
             {
-                // sql connection need tcf, this works like promise from ES6
-                // but since C# is java based, so try catch is basically the things being here
-                // just try to put things in tcf
-                // otherwise the async will not work properly
-                // tcf is an async function.
-                // 
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+                {
+                    SqlCommand cmd = connection.CreateCommand();
+                    try
+                    {
+                        query = $"SELECT * FROM TFHR.dbo.Staff where UID='{UID}'";
+                        cmd.CommandText = query;
+                        connection.Open();
+                        cmd.ExecuteScalar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(cmd.CommandText,
+                                   "SQL Error",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        List<string> us = new List<string>();
+                        List<string> ps = new List<string>();
+                        string name = "";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            us.Add(reader["UID"].ToString());
+                            ps.Add(reader["Password"].ToString());
+                            name = reader["FirstName"].ToString();
+                        }
+                        if (us.Contains(UID))
+                        {
+                            if (Password == ps[us.IndexOf(UID)])
+                            {
+                                MessageBox.Show($"Welcome! {name}!",
+                                "Note",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                                this.Hide();
+                                Form1 form1 = new Form1();
+                                form1.ShowDialog();
+                                form1 = null;
+                                Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Wrong Password!");
+                            }
+                        }
+                        else
+                        {
+                            // Enter user not found code here.
+                            // testing?
+
+                            MessageBox.Show("Wrong UID");
+                        }
+                        cmd.Dispose();
+                    }
+                    connection.Close();
+                }
             }
         }
 
@@ -126,6 +120,32 @@ namespace SEHS
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cTextBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+        }
+
+        private void cTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
         }
     }
 }
