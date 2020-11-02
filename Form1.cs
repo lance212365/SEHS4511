@@ -29,30 +29,34 @@ namespace SEHS
         private void button1_Click(object sender, EventArgs e)
         {
             hideAllAndShow(0);
-            string query = "SELECT * FROM TFHR.dbo.Staff";
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            using (TFHREntities ctx = new TFHREntities())
             {
-                SqlCommand cmd = connection.CreateCommand();
-                try
-                {
-                    cmd.CommandText = query;
-                    connection.Open();
-                    cmd.ExecuteScalar();
-                    System.Data.DataTable dt = new System.Data.DataTable();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    userControl1.dataGridView2.DataSource = dt;
-                    da.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(cmd.CommandText,
-                               "SQL Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
-                }
-                connection.Close();
+                var stflist = ctx.Staff.ToList();
+                userControl1.dataGridView2.DataSource = stflist;
             }
+            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            //{
+            //    SqlCommand cmd = connection.CreateCommand();
+            //    try
+            //    {
+            //        cmd.CommandText = query;
+            //        connection.Open();
+            //        cmd.ExecuteScalar();
+            //        System.Data.DataTable dt = new System.Data.DataTable();
+            //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //        da.Fill(dt);
+            //        userControl1.dataGridView2.DataSource = dt;
+            //        da.Dispose();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(cmd.CommandText,
+            //                   "SQL Error",
+            //                   MessageBoxButtons.OK,
+            //                   MessageBoxIcon.Error);
+            //    }
+            //    connection.Close();
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
