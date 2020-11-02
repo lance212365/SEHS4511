@@ -77,8 +77,12 @@ namespace SEHS
                             "Note",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-                            this.Hide();
+                            //this.Hide();
                             new Form1().Show();
+                            this.Visible = false;
+                            GC.WaitForFullGCComplete();
+                            var mem = GC.GetTotalMemory(true);
+                            MessageBox.Show(String.Format("Memory used: {0}", mem));
                         }
                         else
                         {
@@ -123,6 +127,11 @@ namespace SEHS
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

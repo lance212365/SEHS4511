@@ -220,7 +220,12 @@ namespace SEHS
         }
         private void buttonQuit_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            new login().Show();
+            this.Close();
+            this.Visible = false;
+            GC.WaitForFullGCComplete();
+            var mem = GC.GetTotalMemory(true);
+            MessageBox.Show(String.Format("Memory used: {0}", mem));
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -303,6 +308,11 @@ namespace SEHS
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }
