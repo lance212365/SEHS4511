@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
+using System.Data.Entity;
 
 namespace SEHS
 {
