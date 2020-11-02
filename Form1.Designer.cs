@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.View = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonQuit = new System.Windows.Forms.Button();
+            this.buttonLogout = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(48)))));
-            this.panel1.Controls.Add(this.buttonQuit);
+            this.panel1.Controls.Add(this.buttonLogout);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
@@ -83,21 +83,21 @@
             this.panel1.Size = new System.Drawing.Size(275, 730);
             this.panel1.TabIndex = 1;
             // 
-            // buttonQuit
+            // buttonLogout
             // 
-            this.buttonQuit.BackColor = System.Drawing.Color.DarkRed;
-            this.buttonQuit.Cursor = System.Windows.Forms.Cursors.Default;
-            this.buttonQuit.FlatAppearance.BorderSize = 0;
-            this.buttonQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonQuit.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
-            this.buttonQuit.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonQuit.Location = new System.Drawing.Point(0, 619);
-            this.buttonQuit.Name = "buttonQuit";
-            this.buttonQuit.Size = new System.Drawing.Size(275, 73);
-            this.buttonQuit.TabIndex = 4;
-            this.buttonQuit.Text = "Exit";
-            this.buttonQuit.UseVisualStyleBackColor = false;
-            this.buttonQuit.Click += new System.EventHandler(this.buttonQuit_Click);
+            this.buttonLogout.BackColor = System.Drawing.Color.DarkRed;
+            this.buttonLogout.Cursor = System.Windows.Forms.Cursors.Default;
+            this.buttonLogout.FlatAppearance.BorderSize = 0;
+            this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogout.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.buttonLogout.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonLogout.Location = new System.Drawing.Point(0, 619);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(275, 73);
+            this.buttonLogout.TabIndex = 4;
+            this.buttonLogout.Text = "Logout";
+            this.buttonLogout.UseVisualStyleBackColor = false;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // pictureBox2
             // 
@@ -247,8 +247,7 @@
             this.Name = "Form1";
             this.Text = "Talent Farm Data Manament System";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -264,7 +263,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonQuit;
+        private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel2;

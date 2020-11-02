@@ -152,7 +152,7 @@
             this.cTextBox2.WaterMark = "Enter Password here";
             this.cTextBox2.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
             this.cTextBox2.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
-            this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.LightGray;
+            this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.Gray;
             // 
             // pictureBox1
             // 
@@ -191,7 +191,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "login";
             this.Text = "login";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.login_FormClosed);
             this.Load += new System.EventHandler(this.Login_Load);
             this.loginBox1.ResumeLayout(false);
             this.loginBox1.PerformLayout();

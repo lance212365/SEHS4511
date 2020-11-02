@@ -77,13 +77,12 @@ namespace SEHS
                             "Note",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-                            //this.Hide();
-                            new Form1().Show();
-                            this.Visible = false;
-                            GC.WaitForFullGCComplete();
-                            var mem = GC.GetTotalMemory(true);
-                            MessageBox.Show(String.Format("Memory used: {0}", mem));
-                        }
+                            this.Hide();
+                            Form1 form1 = new Form1();
+                            form1.ShowDialog();
+                            form1 = null;
+                            Show();
+                        }   
                         else
                         {
                             MessageBox.Show("Wrong Password!");
@@ -127,11 +126,6 @@ namespace SEHS
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
