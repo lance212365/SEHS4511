@@ -23,8 +23,8 @@ namespace SEHS
         public string Status { get; set; }
         public string Password { get; set; }
     
-        public virtual CostCentre CostCentre { get; set; }
-        public virtual Role Role1 { get; set; }
-        public virtual Title Title1 { get; set; }
+        private CostCentre CostCentre { get; set; }
+        private Role Role1 { get; set; }
+        private Title Title1 { get; set; }
     }
 }
