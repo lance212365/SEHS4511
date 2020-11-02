@@ -78,8 +78,11 @@ namespace SEHS
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                             this.Hide();
-                            new Form1().Show();
-                        }
+                            Form1 form1 = new Form1();
+                            form1.ShowDialog();
+                            form1 = null;
+                            Show();
+                        }   
                         else
                         {
                             MessageBox.Show("Wrong Password!");

@@ -18,6 +18,7 @@ namespace SEHS
 {
     public partial class Form1 : Form
     {
+        bool isToLogin = false;
         public Form1()
         {
             InitializeComponent();
@@ -68,8 +69,6 @@ namespace SEHS
             userControl2.dataGridView1.Show();
             String path = Directory.GetCurrentDirectory();
             String fname = "http://dev.elderlyinhome.org/Seed.xlsx";
-            
-
 
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fname);
@@ -90,11 +89,7 @@ namespace SEHS
             {
                 for (int j = 1; j <= colCount; j++)
                 {
-
-
-                    //write the value to the Grid  
-
-
+                    //write the value to the Grid 
                     if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
                     {
                         if (xlRange.Cells[i, j].Value2.ToString() == "End")
@@ -106,7 +101,6 @@ namespace SEHS
                         {
                             userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                         }
-
                     }
                     else
                     {
@@ -218,10 +212,6 @@ namespace SEHS
         {
             hideAllAndShow(3);
         }
-        private void buttonQuit_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -295,14 +285,23 @@ namespace SEHS
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void buttonLogout_Click(object sender, EventArgs e)
         {
+            isToLogin = true;
+            this.Close();
+        }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isToLogin == false)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
         }
     }
 }
