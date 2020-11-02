@@ -29,7 +29,6 @@ C:\Users\waish\Downloads\PolyU_SPEED\sem3\SEHS4511 MANAGEMENT INFORMATION SYSTEM
 C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\SEHS.exe.config
 C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\SEHS.exe
 C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\SEHS.pdb
-C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csprojAssemblyReference.cache
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.Form1.resources
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.login.resources
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.Properties.Resources.resources
@@ -88,3 +87,11 @@ C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csprojAssemblyReference.cac
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.ResolveComReference.cache
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.login.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.CopyComplete
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\EntityFramework.dll
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\EntityFramework.xml
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.ResolveComReference.cache
+C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.CopyComplete
+C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\ChreneLib.dll
