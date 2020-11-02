@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.loginBox1 = new System.Windows.Forms.GroupBox();
-            this.cTextBox2 = new ChreneLib.Controls.TextBoxes.CTextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cTextBox1 = new ChreneLib.Controls.TextBoxes.CTextBox();
+            this.cTextBox2 = new ChreneLib.Controls.TextBoxes.CTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -67,21 +67,6 @@
             this.loginBox1.TabIndex = 1;
             this.loginBox1.TabStop = false;
             this.loginBox1.Text = "Login";
-            // 
-            // cTextBox2
-            // 
-            this.cTextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.cTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cTextBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.cTextBox2.Location = new System.Drawing.Point(139, 126);
-            this.cTextBox2.Name = "cTextBox2";
-            this.cTextBox2.PasswordChar = '*';
-            this.cTextBox2.Size = new System.Drawing.Size(239, 30);
-            this.cTextBox2.TabIndex = 8;
-            this.cTextBox2.WaterMark = "Enter Password here";
-            this.cTextBox2.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
-            this.cTextBox2.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
-            this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.LightGray;
             // 
             // pictureBox6
             // 
@@ -152,7 +137,22 @@
             this.cTextBox1.WaterMark = "Enter UID here";
             this.cTextBox1.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
             this.cTextBox1.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
-            this.cTextBox1.WaterMarkForeColor = System.Drawing.Color.LightGray;
+            this.cTextBox1.WaterMarkForeColor = System.Drawing.Color.Gray;
+            // 
+            // cTextBox2
+            // 
+            this.cTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.cTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cTextBox2.ForeColor = System.Drawing.SystemColors.Window;
+            this.cTextBox2.Location = new System.Drawing.Point(139, 126);
+            this.cTextBox2.Name = "cTextBox2";
+            this.cTextBox2.PasswordChar = '*';
+            this.cTextBox2.Size = new System.Drawing.Size(239, 30);
+            this.cTextBox2.TabIndex = 8;
+            this.cTextBox2.WaterMark = "Enter Password here";
+            this.cTextBox2.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
+            this.cTextBox2.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
+            this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.Gray;
             // 
             // pictureBox1
             // 

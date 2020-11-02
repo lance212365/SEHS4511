@@ -18,6 +18,7 @@ namespace SEHS
 {
     public partial class Form1 : Form
     {
+        bool isToLogin = false;
         public Form1()
         {
             InitializeComponent();
@@ -218,10 +219,6 @@ namespace SEHS
         {
             hideAllAndShow(3);
         }
-        private void buttonQuit_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -295,14 +292,23 @@ namespace SEHS
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void buttonLogout_Click(object sender, EventArgs e)
         {
+            isToLogin = true;
+            this.Close();
+        }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isToLogin == false)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
         }
     }
 }
