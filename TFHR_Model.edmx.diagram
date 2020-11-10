@@ -8,12 +8,14 @@
         <EntityTypeShape EntityType="TFHRModel.CostCentre" Width="1.5" PointX="4.375" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TFHRModel.Role" Width="1.5" PointX="6.375" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TFHRModel.Staff" Width="1.5" PointX="1.125" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="2.375" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="7.625" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TFHRModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="2.375" IsExpanded="false" />
         <EntityTypeShape EntityType="TFHRModel.Title" Width="1.5" PointX="4.625" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="TFHRModel.FK_Staff_CostCentre" ManuallyRouted="false" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Role" ManuallyRouted="false" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Title" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TFHRModel.UserLogin" Width="1.5" PointX="1.125" PointY="5.5" />
+        <AssociationConnector Association="TFHRModel.FK_UserLogin_Staff" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

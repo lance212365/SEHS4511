@@ -95,3 +95,6 @@ C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\zh-Hant\EntityFramework.resources
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.ResolveComReference.cache
 C:\Users\waish\Source\Repos\SEHS4511\obj\Debug\SEHS.csproj.CopyComplete
 C:\Users\waish\Source\Repos\SEHS4511\bin\Debug\ChreneLib.dll
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\System.Linq.Dynamic.Core.dll
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\System.Linq.Dynamic.Core.pdb
+C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\System.Linq.Dynamic.Core.xml

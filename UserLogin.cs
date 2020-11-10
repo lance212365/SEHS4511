@@ -12,19 +12,11 @@ namespace SEHS
     using System;
     using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class UserLogin
     {
         public string UID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Title { get; set; }
-        public string Role { get; set; }
-        public string CentreID { get; set; }
-        public string Status { get; set; }
+        public string Password { get; set; }
     
-        private CostCentre CostCentre { get; set; }
-        private Role Role1 { get; set; }
-        private Title Title1 { get; set; }
-        private UserLogin UserLogin { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }

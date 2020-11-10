@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TFHRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TFHRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CostCentre">
           <Key>
             <PropertyRef Name="CentreID" />
@@ -34,7 +34,6 @@
           <Property Name="Role" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CentreID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Staff_Duty">
           <Key>
@@ -44,8 +43,8 @@
           <Property Name="StaffID" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Hours" Type="float" />
           <Property Name="CourseType" Type="nvarchar(max)" />
-          <Property Name="CourseCode" Type="nchar" MaxLength="10" />
-          <Property Name="CourseName" Type="nchar" MaxLength="10" />
+          <Property Name="CourseCode" Type="nvarchar(max)" />
+          <Property Name="CourseName" Type="nvarchar(max)" />
           <Property Name="AmountOF_UNITA" Type="int" />
           <Property Name="AmountOF_HQ" Type="int" />
           <Property Name="AmountOF_HQPT" Type="int" />
@@ -69,6 +68,13 @@
           <Property Name="TitleID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Staff_CostCentre">
           <End Role="CostCentre" Type="Self.CostCentre" Multiplicity="1" />
@@ -103,6 +109,18 @@
             </Principal>
             <Dependent Role="Staff">
               <PropertyRef Name="Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -144,6 +162,7 @@
           <EntitySet Name="Staff_Duty" EntityType="Self.Staff_Duty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Staff_CostCentre" Association="Self.FK_Staff_CostCentre">
             <End Role="CostCentre" EntitySet="CostCentre" />
             <End Role="Staff" EntitySet="Staff" />
@@ -156,9 +175,12 @@
             <End Role="Title" EntitySet="Title" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_Staff" Association="Self.FK_UserLogin_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TFHRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -193,10 +215,10 @@
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CentreID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CostCentre" Relationship="Self.FK_Staff_CostCentre" FromRole="Staff" ToRole="CostCentre" />
-          <NavigationProperty Name="Role1" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
-          <NavigationProperty Name="Title1" Relationship="Self.FK_Staff_Title" FromRole="Staff" ToRole="Title" />
+          <NavigationProperty Name="CostCentre" Relationship="Self.FK_Staff_CostCentre" FromRole="Staff" ToRole="CostCentre" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Title1" Relationship="Self.FK_Staff_Title" FromRole="Staff" ToRole="Title" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="UserLogin" Relationship="TFHRModel.FK_UserLogin_Staff" FromRole="Staff" ToRole="UserLogin" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
         </EntityType>
         <EntityType Name="Staff_Duty">
           <Key>
@@ -206,8 +228,8 @@
           <Property Name="StaffID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Hours" Type="Double" />
           <Property Name="CourseType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CourseCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CourseName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CourseCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AmountOF_UNITA" Type="Int32" />
           <Property Name="AmountOF_HQ" Type="Int32" />
           <Property Name="AmountOF_HQPT" Type="Int32" />
@@ -318,6 +340,11 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="UserLogin" EntityType="TFHRModel.UserLogin" />
+          <AssociationSet Name="FK_UserLogin_Staff" Association="TFHRModel.FK_UserLogin_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -330,6 +357,26 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staff" Relationship="TFHRModel.FK_UserLogin_Staff" FromRole="UserLogin" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_UserLogin_Staff">
+          <End Type="TFHRModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="TFHRModel.UserLogin" Role="UserLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -366,7 +413,6 @@
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="CentreID" ColumnName="CentreID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -431,6 +477,14 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TFHRModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TFHRModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="UserLogin">
+            <EntityTypeMapping TypeName="TFHRModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

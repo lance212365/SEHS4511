@@ -39,63 +39,74 @@ namespace SEHS
             string query;
             string UID = $"{cTextBox1.Text}";
             string Password = $"{cTextBox2.Text}";
-
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            using(TFHREntities ctx = new TFHREntities())
             {
-                SqlCommand cmd = connection.CreateCommand();
-                try
+                MessageBox.Show("S");
+                var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                if(info.UID == UID && info.Password == Password)
                 {
-                    query = $"SELECT * FROM TFHR.dbo.Staff where UID='{UID}'";
-                    cmd.CommandText = query;
-                    connection.Open();
-                    cmd.ExecuteScalar();
-                }
-                catch (Exception ex)
+                    string name = ctx.Staff.Where(w => w.UID == UID).Select(s => s.FirstName).FirstOrDefault();
+                    MessageBox.Show($"Welcome! {name}!",
+                    "Note",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    this.Hide();
+                    new Form1().Show();
+                } else
                 {
-                    MessageBox.Show(cmd.CommandText,
-                               "SQL Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
+                    MessageBox.Show("Wrong UID or Password!");
                 }
-                finally
-                {
-                    List<string> us = new List<string>();
-                    List<string> ps = new List<string>();
-                    string name = "";
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        us.Add(reader["UID"].ToString());
-                        ps.Add(reader["Password"].ToString());
-                        name = reader["FirstName"].ToString();
-                    }
-                    if (us.Contains(UID))
-                    {
-                        if (Password == ps[us.IndexOf(UID)])
-                        {
-                            MessageBox.Show($"Welcome! {name}!",
-                            "Note",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                            this.Hide();
-                            new Form1().Show();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Wrong Password!");
-                        }
-                    }
-                    else
-                    {
-                        // Enter user not found code here.
-                        // testing?
-
-                        MessageBox.Show("Wrong UID");
-                    }
-                    cmd.Dispose();
-                }
-                connection.Close();
             }
+            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            //{
+            //    SqlCommand cmd = connection.CreateCommand();
+            //    try
+            //    {
+            //        query = $"SELECT * FROM TFHR.dbo.Staff where UID='{UID}'";
+            //        cmd.CommandText = query;
+            //        connection.Open();
+            //        cmd.ExecuteScalar();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(cmd.CommandText,
+            //                   "SQL Error",
+            //                   MessageBoxButtons.OK,
+            //                   MessageBoxIcon.Error);
+            //    }
+            //    finally
+            //    {
+            //        List<string> us = new List<string>();
+            //        List<string> ps = new List<string>();
+            //        string name = "";
+            //        SqlDataReader reader = cmd.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            us.Add(reader["UID"].ToString());
+            //            ps.Add(reader["Password"].ToString());
+            //            name = reader["FirstName"].ToString();
+            //        }
+            //        if (us.Contains(UID))
+            //        {
+            //            if (Password == ps[us.IndexOf(UID)])
+            //            {
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("Wrong Password!");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            // Enter user not found code here.
+            //            // testing?
+
+            //            MessageBox.Show("Wrong UID");
+            //        }
+            //        cmd.Dispose();
+            //    }
+            //    connection.Close();
+            //}
 
             //Test
 

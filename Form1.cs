@@ -27,13 +27,38 @@ namespace SEHS
             hideAll();
         }
 
+        public class Table
+        {
+            public string UID { get; set; }
+            public string Name { get; set; }
+            public string Centre { get; set; }
+            public string Role { get; set; }
+            public string Status { get; set; }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             hideAllAndShow(0);
             using (TFHREntities ctx = new TFHREntities())
             {
-                var stflist = ctx.Staff.ToList();
-                userControl1.dataGridView2.DataSource = stflist;
+                var stf = ctx.Staff;
+                var cc = ctx.CostCentre;
+                var role = ctx.Role;
+                var title = ctx.Title;
+                var stflist = (from i1 in stf
+                               join i2 in cc on i1.CentreID equals i2.CentreID
+                               join i3 in role on i1.Role equals i3.RoleID
+                               join i4 in title on i1.Title equals i4.TitleID
+                               select new Table
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i4.Title1, ". ", i1.FirstName, " ", i1.LastName),
+                                   Centre = i2.CentreName,
+                                   Role = i3.RoleName,
+                                   Status = i1.Status
+                               }
+                               );
+
+                userControl1.dataGridView2.DataSource = stflist.ToList();
             }
             //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             //{
