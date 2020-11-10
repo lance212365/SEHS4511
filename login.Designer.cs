@@ -219,7 +219,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
-        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox2;
+        public ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
+        public ChreneLib.Controls.TextBoxes.CTextBox cTextBox2;
     }
 }
