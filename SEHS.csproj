@@ -234,6 +234,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\user1.png" />
     <Content Include="TFHR_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TFHR_Model.Context.cs</LastGenOutput>

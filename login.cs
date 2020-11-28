@@ -41,17 +41,20 @@ namespace SEHS
             string Password = $"{cTextBox2.Text}";
             using(TFHREntities ctx = new TFHREntities())
             {
-                MessageBox.Show("S");
                 var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
                 if(info.UID == UID && info.Password == Password)
                 {
-                    string name = ctx.Staff.Where(w => w.UID == UID).Select(s => s.FirstName).FirstOrDefault();
+                    Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                    string name = user.FirstName;
+                    string sur = user.LastName;
                     MessageBox.Show($"Welcome! {name}!",
                     "Note",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                    Form1 Form = new Form1();
+                    Form.buttonUserName.Text = $"{name} {sur}";
+                    Form.Show();
                     this.Hide();
-                    new Form1().Show();
                 } else
                 {
                     MessageBox.Show("Wrong UID or Password!");

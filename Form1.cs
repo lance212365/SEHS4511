@@ -61,29 +61,6 @@ namespace SEHS
 
                 userControl1.dataGridView2.DataSource = stflist.ToList();
             }
-            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
-            //{
-            //    SqlCommand cmd = connection.CreateCommand();
-            //    try
-            //    {
-            //        cmd.CommandText = query;
-            //        connection.Open();
-            //        cmd.ExecuteScalar();
-            //        System.Data.DataTable dt = new System.Data.DataTable();
-            //        SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //        da.Fill(dt);
-            //        userControl1.dataGridView2.DataSource = dt;
-            //        da.Dispose();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(cmd.CommandText,
-            //                   "SQL Error",
-            //                   MessageBoxButtons.OK,
-            //                   MessageBoxIcon.Error);
-            //    }
-            //    connection.Close();
-            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -325,6 +302,7 @@ namespace SEHS
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             isToLogin = true;
+            new login().Show();
             this.Close();
         }
 
@@ -334,6 +312,11 @@ namespace SEHS
             {
                 System.Windows.Forms.Application.Exit();
             }
+        }
+
+        private void buttonUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

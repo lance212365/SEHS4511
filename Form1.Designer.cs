@@ -38,6 +38,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonUserName = new System.Windows.Forms.Button();
             this.userControl4 = new SEHS.UserControl4();
             this.userControl3 = new SEHS.UserControl3();
             this.userControl2 = new SEHS.UserControl2();
@@ -46,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // View
@@ -58,7 +61,7 @@
             this.View.ForeColor = System.Drawing.Color.Transparent;
             this.View.Image = ((System.Drawing.Image)(resources.GetObject("View.Image")));
             this.View.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.View.Location = new System.Drawing.Point(0, 180);
+            this.View.Location = new System.Drawing.Point(0, 155);
             this.View.Name = "View";
             this.View.Size = new System.Drawing.Size(275, 73);
             this.View.TabIndex = 0;
@@ -102,7 +105,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 29);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(275, 119);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -120,7 +123,7 @@
             this.button4.ForeColor = System.Drawing.Color.Transparent;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.Location = new System.Drawing.Point(0, 480);
+            this.button4.Location = new System.Drawing.Point(0, 455);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(275, 98);
             this.button4.TabIndex = 3;
@@ -140,7 +143,7 @@
             this.button3.ForeColor = System.Drawing.Color.Transparent;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button3.Location = new System.Drawing.Point(0, 374);
+            this.button3.Location = new System.Drawing.Point(0, 349);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(275, 98);
             this.button3.TabIndex = 2;
@@ -160,7 +163,7 @@
             this.button2.ForeColor = System.Drawing.Color.Transparent;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.Location = new System.Drawing.Point(3, 277);
+            this.button2.Location = new System.Drawing.Point(3, 252);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(272, 91);
             this.button2.TabIndex = 1;
@@ -184,6 +187,7 @@
             // 
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.userControl4);
             this.panel2.Controls.Add(this.userControl3);
             this.panel2.Controls.Add(this.userControl2);
@@ -193,6 +197,34 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1078, 730);
             this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.buttonUserName);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1078, 54);
+            this.panel3.TabIndex = 7;
+            // 
+            // buttonUserName
+            // 
+            this.buttonUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
+            this.buttonUserName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonUserName.FlatAppearance.BorderSize = 0;
+            this.buttonUserName.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.buttonUserName.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.buttonUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUserName.Font = new System.Drawing.Font("微软雅黑", 18F);
+            this.buttonUserName.ForeColor = System.Drawing.Color.CadetBlue;
+            this.buttonUserName.Image = ((System.Drawing.Image)(resources.GetObject("buttonUserName.Image")));
+            this.buttonUserName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonUserName.Location = new System.Drawing.Point(840, 0);
+            this.buttonUserName.Name = "buttonUserName";
+            this.buttonUserName.Size = new System.Drawing.Size(238, 54);
+            this.buttonUserName.TabIndex = 2;
+            this.buttonUserName.Text = "button1";
+            this.buttonUserName.UseVisualStyleBackColor = false;
+            this.buttonUserName.Click += new System.EventHandler(this.buttonUserName_Click);
             // 
             // userControl4
             // 
@@ -252,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -271,6 +304,8 @@
         private UserControl2 userControl2;
         private UserControl3 userControl3;
         private UserControl4 userControl4;
+        private System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.Button buttonUserName;
     }
 }
 
