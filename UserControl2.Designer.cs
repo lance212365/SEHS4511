@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Download_dept = new System.Windows.Forms.Button();
+            this.upload_dept = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,14 +53,35 @@
             this.dataGridView1.Location = new System.Drawing.Point(33, 95);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(845, 526);
+            this.dataGridView1.Size = new System.Drawing.Size(705, 380);
             this.dataGridView1.TabIndex = 8;
+            // 
+            // Download_dept
+            // 
+            this.Download_dept.Location = new System.Drawing.Point(33, 493);
+            this.Download_dept.Name = "Download_dept";
+            this.Download_dept.Size = new System.Drawing.Size(161, 51);
+            this.Download_dept.TabIndex = 9;
+            this.Download_dept.Text = "Download Dept Feeder";
+            this.Download_dept.UseVisualStyleBackColor = true;
+            this.Download_dept.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // upload_dept
+            // 
+            this.upload_dept.Location = new System.Drawing.Point(235, 493);
+            this.upload_dept.Name = "upload_dept";
+            this.upload_dept.Size = new System.Drawing.Size(148, 53);
+            this.upload_dept.TabIndex = 10;
+            this.upload_dept.Text = "Upload Dept Feeder";
+            this.upload_dept.UseVisualStyleBackColor = true;
             // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.upload_dept);
+            this.Controls.Add(this.Download_dept);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl2";
@@ -73,5 +96,7 @@
 
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button Download_dept;
+        private System.Windows.Forms.Button upload_dept;
     }
 }

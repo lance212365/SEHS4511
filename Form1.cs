@@ -69,7 +69,7 @@ namespace SEHS
             //hideAll(); // Still need to hide all usercontrol
 
             userControl2.dataGridView1.Show();
-            String path = Directory.GetCurrentDirectory();
+            //String path = Directory.GetCurrentDirectory();
             String fname = "http://dev.elderlyinhome.org/Seed.xlsx";
             
 
@@ -183,31 +183,21 @@ namespace SEHS
         private DataGridViewComboBoxCell loadcombobox(int row,int col)
         {
             DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
-            string query = "SELECT CONCAT(FirstName,LastName)AS Name FROM TFHR.dbo.Staff";
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            using (TFHREntities ctx = new TFHREntities())
             {
-                SqlCommand cmd = connection.CreateCommand();
-                try
-                {
-                    cmd.CommandText = query;
-                    connection.Open();
-                    cmd.ExecuteScalar();
-                    System.Data.DataTable dt = new System.Data.DataTable();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    comboBoxCell.DataSource = dt;
-                    comboBoxCell.DisplayMember = "Name";
-                    comboBoxCell.ValueMember = "Name";
-                    da.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(cmd.CommandText,
-                               "SQL Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
-                }
-                connection.Close();
+                var stf = ctx.Staff;
+                var stflist = (from i1 in stf
+                               select new
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i1.FirstName, " ", i1.LastName),
+                                 
+                               }
+                               );
+
+                comboBoxCell.DataSource = stflist.ToList();
+                comboBoxCell.DisplayMember = "Name";
+                comboBoxCell.ValueMember = "UID";
             }
             return comboBoxCell;
         }

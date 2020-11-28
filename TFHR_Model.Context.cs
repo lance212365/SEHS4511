@@ -30,10 +30,11 @@ namespace SEHS
         public virtual DbSet<CostCentre> CostCentre { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
-        public virtual DbSet<Staff_Duty> Staff_Duty { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
+        public virtual DbSet<Staff_Duty> Staff_Duty { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -14,6 +14,13 @@ namespace SEHS
     
     public partial class Staff
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Staff()
+        {
+            this.Staff_Duty = new HashSet<Staff_Duty>();
+            this.Log = new HashSet<Log>();
+        }
+    
         public string UID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,5 +33,9 @@ namespace SEHS
         private Role Role1 { get; set; }
         private Title Title1 { get; set; }
         private UserLogin UserLogin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff_Duty> Staff_Duty { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Log> Log { get; set; }
     }
 }

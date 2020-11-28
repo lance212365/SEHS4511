@@ -25,5 +25,7 @@ namespace SEHS
         public Nullable<int> AmountOF_HQPT { get; set; }
         public Nullable<int> AmountOF_L { get; set; }
         public Nullable<int> AmountOF_T { get; set; }
+    
+        public virtual Staff Staff { get; set; }
     }
 }

@@ -34,23 +34,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Staff_Duty">
-      <EntityTypeMapping TypeName="TFHRModel.Staff_Duty">
-        <MappingFragment StoreEntitySet="Staff_Duty">
-          <ScalarProperty Name="DutyID" ColumnName="DutyID" />
-          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
-          <ScalarProperty Name="Hours" ColumnName="Hours" />
-          <ScalarProperty Name="CourseType" ColumnName="CourseType" />
-          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
-          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-          <ScalarProperty Name="AmountOF_UNITA" ColumnName="AmountOF_UNITA" />
-          <ScalarProperty Name="AmountOF_HQ" ColumnName="AmountOF_HQ" />
-          <ScalarProperty Name="AmountOF_HQPT" ColumnName="AmountOF_HQPT" />
-          <ScalarProperty Name="AmountOF_L" ColumnName="AmountOF_L" />
-          <ScalarProperty Name="AmountOF_T" ColumnName="AmountOF_T" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="TFHRModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -100,6 +83,35 @@
         <MappingFragment StoreEntitySet="UserLogin">
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UID" ColumnName="UID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Duty">
+      <EntityTypeMapping TypeName="TFHRModel.Staff_Duty">
+        <MappingFragment StoreEntitySet="Staff_Duty">
+          <ScalarProperty Name="AmountOF_T" ColumnName="AmountOF_T" />
+          <ScalarProperty Name="AmountOF_L" ColumnName="AmountOF_L" />
+          <ScalarProperty Name="AmountOF_HQPT" ColumnName="AmountOF_HQPT" />
+          <ScalarProperty Name="AmountOF_HQ" ColumnName="AmountOF_HQ" />
+          <ScalarProperty Name="AmountOF_UNITA" ColumnName="AmountOF_UNITA" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="CourseType" ColumnName="CourseType" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="DutyID" ColumnName="DutyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="TFHRModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
