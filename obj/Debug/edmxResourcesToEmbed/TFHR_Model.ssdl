@@ -45,7 +45,7 @@
     <Key>
       <PropertyRef Name="DutyID" />
     </Key>
-    <Property Name="DutyID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DutyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Hours" Type="float" />
     <Property Name="CourseType" Type="nvarchar(max)" />

@@ -74,6 +74,7 @@
             this.upload_dept.TabIndex = 10;
             this.upload_dept.Text = "Upload Dept Feeder";
             this.upload_dept.UseVisualStyleBackColor = true;
+            this.upload_dept.Click += new System.EventHandler(this.upload_dept_Click);
             // 
             // UserControl2
             // 

@@ -14,7 +14,7 @@ namespace SEHS
     
     public partial class Staff_Duty
     {
-        public string DutyID { get; set; }
+        public int DutyID { get; set; }
         public string StaffID { get; set; }
         public Nullable<double> Hours { get; set; }
         public string CourseType { get; set; }
