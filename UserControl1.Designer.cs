@@ -38,6 +38,10 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonResetFilter = new System.Windows.Forms.Button();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -45,12 +49,9 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.buttonResetFilter = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDeleteData = new System.Windows.Forms.Button();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.staffBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.comboBox5);
             this.groupBox1.Controls.Add(this.label6);
@@ -118,13 +120,62 @@
             this.groupBox1.Text = "Filter";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(311, 167);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(560, 34);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(35, 167);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(253, 30);
+            this.comboBox5.TabIndex = 9;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            this.comboBox5.TextChanged += new System.EventHandler(this.tableChange);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label6.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label6.Location = new System.Drawing.Point(31, 145);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 21);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Find By Column";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // buttonResetFilter
+            // 
+            this.buttonResetFilter.BackColor = System.Drawing.Color.DarkGreen;
+            this.buttonResetFilter.Cursor = System.Windows.Forms.Cursors.Default;
+            this.buttonResetFilter.FlatAppearance.BorderSize = 0;
+            this.buttonResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonResetFilter.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.buttonResetFilter.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonResetFilter.Location = new System.Drawing.Point(775, 208);
+            this.buttonResetFilter.Name = "buttonResetFilter";
+            this.buttonResetFilter.Size = new System.Drawing.Size(96, 32);
+            this.buttonResetFilter.TabIndex = 5;
+            this.buttonResetFilter.Text = "Reset";
+            this.buttonResetFilter.UseVisualStyleBackColor = false;
+            this.buttonResetFilter.Click += new System.EventHandler(this.buttonQuit_Click_1);
+            // 
             // comboBox4
             // 
             this.comboBox4.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(483, 112);
+            this.comboBox4.Location = new System.Drawing.Point(449, 112);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(388, 30);
+            this.comboBox4.Size = new System.Drawing.Size(221, 30);
             this.comboBox4.TabIndex = 7;
             this.comboBox4.TextChanged += new System.EventHandler(this.tableChange);
             // 
@@ -133,7 +184,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label5.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.label5.Location = new System.Drawing.Point(479, 88);
+            this.label5.Location = new System.Drawing.Point(445, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 21);
             this.label5.TabIndex = 8;
@@ -164,9 +215,9 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(483, 54);
+            this.comboBox2.Location = new System.Drawing.Point(449, 54);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(388, 30);
+            this.comboBox2.Size = new System.Drawing.Size(422, 30);
             this.comboBox2.TabIndex = 3;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             this.comboBox2.TextChanged += new System.EventHandler(this.tableChange);
@@ -176,7 +227,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label3.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.label3.Location = new System.Drawing.Point(479, 30);
+            this.label3.Location = new System.Drawing.Point(445, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 21);
             this.label3.TabIndex = 4;
@@ -239,22 +290,6 @@
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
-            // buttonResetFilter
-            // 
-            this.buttonResetFilter.BackColor = System.Drawing.Color.DarkGreen;
-            this.buttonResetFilter.Cursor = System.Windows.Forms.Cursors.Default;
-            this.buttonResetFilter.FlatAppearance.BorderSize = 0;
-            this.buttonResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonResetFilter.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
-            this.buttonResetFilter.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonResetFilter.Location = new System.Drawing.Point(775, 208);
-            this.buttonResetFilter.Name = "buttonResetFilter";
-            this.buttonResetFilter.Size = new System.Drawing.Size(96, 32);
-            this.buttonResetFilter.TabIndex = 5;
-            this.buttonResetFilter.Text = "Reset";
-            this.buttonResetFilter.UseVisualStyleBackColor = false;
-            this.buttonResetFilter.Click += new System.EventHandler(this.buttonQuit_Click_1);
-            // 
             // buttonUpdate
             // 
             this.buttonUpdate.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -270,6 +305,7 @@
             this.buttonUpdate.TabIndex = 9;
             this.buttonUpdate.Text = "Update";
             this.buttonUpdate.UseVisualStyleBackColor = false;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDeleteData
             // 
@@ -286,37 +322,19 @@
             this.buttonDeleteData.TabIndex = 10;
             this.buttonDeleteData.Text = "Delete";
             this.buttonDeleteData.UseVisualStyleBackColor = false;
+            this.buttonDeleteData.Click += new System.EventHandler(this.buttonDeleteData_Click);
             // 
-            // comboBox5
+            // checkBox2
             // 
-            this.comboBox5.Font = new System.Drawing.Font("Century Gothic", 14F);
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(35, 167);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(253, 30);
-            this.comboBox5.TabIndex = 9;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-            this.comboBox5.TextChanged += new System.EventHandler(this.tableChange);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.label6.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.label6.Location = new System.Drawing.Point(31, 145);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 21);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Find By Column";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(311, 163);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(560, 34);
-            this.textBox1.TabIndex = 11;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.checkBox2.Location = new System.Drawing.Point(676, 114);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(201, 26);
+            this.checkBox2.TabIndex = 13;
+            this.checkBox2.Text = "Descendent Order";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.tableChange);
             // 
             // staffBindingSource
             // 
@@ -371,5 +389,6 @@
         public System.Windows.Forms.ComboBox comboBox5;
         public System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

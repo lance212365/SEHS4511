@@ -228,11 +228,12 @@
             // 
             // userControl4
             // 
+            this.userControl4.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.userControl4.BackColor = System.Drawing.Color.Transparent;
             this.userControl4.Location = new System.Drawing.Point(0, 0);
             this.userControl4.Name = "userControl4";
             this.userControl4.Size = new System.Drawing.Size(1078, 730);
-            this.userControl4.TabIndex = 6;
+            this.userControl4.TabIndex = 1;
             this.userControl4.Load += new System.EventHandler(this.userControl4_Load);
             // 
             // userControl3
@@ -265,6 +266,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.panel2);
@@ -275,10 +277,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1366, 768);
-            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Talent Farm Data Manament System";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -295,17 +295,17 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel2;
-        private UserControl1 userControl1;
-        private UserControl2 userControl2;
-        private UserControl3 userControl3;
-        private UserControl4 userControl4;
         private System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Button buttonUserName;
+        public System.Windows.Forms.Panel panel1;
+        public UserControl1 userControl1;
+        public UserControl2 userControl2;
+        public UserControl3 userControl3;
+        public UserControl4 userControl4;
     }
 }
 
