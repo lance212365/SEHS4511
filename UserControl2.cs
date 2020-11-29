@@ -30,6 +30,7 @@ namespace SEHS
         {
                 
             Excel.Application XApp = new Excel.Application();
+            Excel.Application NewApp = new Excel.Application();
             object missing = System.Reflection.Missing.Value;
 
             //var relation = @"..\..\";
@@ -38,15 +39,15 @@ namespace SEHS
 
             const int firstSubjectLine = 1;
             //var oFilePath = Path.Combine(Environment.CurrentDirectory, relation, "Dept_Feeder.xlsx");
-            var oFilePath = "E:\\GP C# Template with Seed, Feeder verified at HHB1202 on 1030\\ConAppExcel_1030_HHB1202\\Dept_Feeder - Empty.xlsx";
+            //var oFilePath = "E:\\GP C# Template with Seed, Feeder verified at HHB1202 on 1030\\ConAppExcel_1030_HHB1202\\Dept_Feeder - Empty.xlsx";
 
             // Ref: https://docs.microsoft.com/en-us/office/vba/api/excel.workbooks.open
             Excel.Workbook iXWbk = XApp.Workbooks.Open(iFilePath); ; // open in read-only mode
 
-            Excel.Workbook oXWbk = XApp.Workbooks.Open(oFilePath); ;
+            Excel.Workbook oXWbk = NewApp.Workbooks.Add(Excel.XlSheetType.xlWorksheet);
 
             Excel.Worksheet iWSht = iXWbk.Worksheets[4];
-            Excel.Worksheet oWSht = oXWbk.Worksheets["Sheet1"];
+            Excel.Worksheet oWSht = (Excel.Worksheet)oXWbk.ActiveSheet;
 
             Excel.Range iRange = iWSht.UsedRange;
             int RowCount = 16;
@@ -139,13 +140,15 @@ namespace SEHS
 
             //iXWbk.Save();
             iXWbk.Close();
-                oXWbk.Save();
+                oXWbk.SaveAs("C:\\Users\\Jimwa\\Desktop\\Dept_Feeder",Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,true,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges,Type.Missing,Type.Missing);
                 oXWbk.Close();
                 XApp.Application.Quit();
+                NewApp.Application.Quit();
 
-                Marshal.ReleaseComObject(iXWbk);
+            Marshal.ReleaseComObject(iXWbk);
                 Marshal.ReleaseComObject(oXWbk);
                 Marshal.ReleaseComObject(XApp);
+                Marshal.ReleaseComObject(NewApp);
             DialogResult a = MessageBox.Show("done");
         }
 
@@ -440,6 +443,224 @@ namespace SEHS
             return UID;
         }
 
+        private void Save_Click(object sender, EventArgs e)
+        {
+            int rowCount = dataGridView1.Rows.Count;
+            int colCount = dataGridView1.Columns.Count; ;
+
+            //stop the loop
+            bool loop = false;
+
+            ArrayList dutylist = new ArrayList();
+
+            var CourseCode = "";
+            var CourseTitle = "";
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                int AmountOF_UNITA = 0;
+                int AmountOF_HQ = 0;
+                int AmountOF_HQPT = 0;
+                var StaffID = "";
+                var OTStaffID = "";
+                var TempStaffID = "";
+                var CTStaffID = "";
+                int TAmountOF_L = 0;
+                int TAmountOF_T = 0;
+                int OAmountOF_L = 0;
+                int OAmountOF_T = 0;
+                int CTAmountOF_L = 0;
+                int CTAmountOF_T = 0;
+                int AmountOF_L = 0;
+                int AmountOF_T = 0;
+                //var duty = {}
+                for (int j = 0; j < colCount; j++)
+                {
+                    //write the value to the Grid  
+                    var a = dataGridView1.Rows[i].Cells[j].Value;
+                    if (!(Boolean)String.IsNullOrWhiteSpace((string)dataGridView1.Rows[i].Cells[j].Value))
+                    {
+                        if (dataGridView1.Rows[i].Cells[j].Value.ToString() == "End")
+                        {
+                            loop = true;
+                            break;
+                        }
+                        else
+                        {
+                            if (i > 2 && j == 0)
+                            {
+                                CourseCode = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 1)
+                            {
+                                CourseTitle = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 2)
+                            {
+                                AmountOF_UNITA = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                            }
+                            else if (i > 2 && j == 3)
+                            {
+                                AmountOF_HQ = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                            }
+                            else if (i > 2 && j == 4)
+                            {
+                                AmountOF_HQPT = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                            }
+                            else if (i > 2 && j == 6)
+                            {
+                                StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 7)
+                            {
+                                char[] delimiterChars = { 'L', 'T' };
+                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                AmountOF_L = int.Parse(words[0]);
+                                AmountOF_T = int.Parse(words[1]);
+                            }
+                            else if (i > 2 && j == 8)
+                            {
+                                StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 9)
+                            {
+                                char[] delimiterChars = { 'L', 'T' };
+                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                AmountOF_L = int.Parse(words[0]);
+                                AmountOF_T = int.Parse(words[1]);
+                            }
+                            else if (i > 2 && j == 10)
+                            {
+                                TempStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 11)
+                            {
+                                char[] delimiterChars = { 'L', 'T' };
+                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                TAmountOF_L = int.Parse(words[0]); ;
+                                TAmountOF_T = int.Parse(words[1]);
+                            }
+                            else if (i > 2 && j == 12)
+                            {
+                                OTStaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 13)
+                            {
+                                char[] delimiterChars = { 'L', 'T' };
+                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                OAmountOF_L = int.Parse(words[0]);
+                                OAmountOF_T = int.Parse(words[1]);
+                            }
+                            else if (i > 2 && j == 14)
+                            {
+                                CTStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else if (i > 2 && j == 15)
+                            {
+                                char[] delimiterChars = { 'L', 'T' };
+                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                CTAmountOF_L = int.Parse(words[0]);
+                                CTAmountOF_T = int.Parse(words[1]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (i > 3 && j == 3)
+                        {
+                            AmountOF_UNITA = 0;
+                        }
+                        else if (i > 3 && j == 4)
+                        {
+                            AmountOF_HQ = 0;
+                        }
+                        else if (i > 3 && j == 5)
+                        {
+                            AmountOF_HQPT = 0;
+                        }
+                        else if (i > 3 && j == 7)
+                        {
+                            if (StaffID == "")
+                            {
+                                StaffID = "";
+                            }
+                        }
+                        else if (i > 3 && j == 9)
+                        {
+                            if (StaffID == "")
+                            {
+                                StaffID = "";
+                            }
+                        }
+                        else if (i > 3 && j == 11)
+                        {
+                            TempStaffID = "";
+                        }
+                        else if (i > 3 && j == 13)
+                        {
+                            OTStaffID = "";
+                        }
+                        else if (i > 3 && j == 15)
+                        {
+                            CTStaffID = "";
+                        }
+                    }
+                }
+                if (loop)
+                {
+                    break;
+                }
+                if (StaffID != "")
+                {
+                    int Hours = AmountOF_L * 2 + AmountOF_T;
+                    dutylist.Add(new Duty(StaffID, Hours, "Normal", CourseCode, CourseTitle, AmountOF_UNITA, AmountOF_HQ, AmountOF_HQPT, AmountOF_L, AmountOF_T));
+                }
+                if (TempStaffID != "")
+                {
+                    int Hours = TAmountOF_L * 2 + TAmountOF_T;
+                    dutylist.Add(new Duty(TempStaffID, Hours, "Temp", CourseCode, CourseTitle, AmountOF_UNITA, AmountOF_HQ, AmountOF_HQPT, TAmountOF_L, TAmountOF_T));
+                }
+                if (OTStaffID != "")
+                {
+                    int Hours = OAmountOF_L * 2 + OAmountOF_T;
+                    dutylist.Add(new Duty(OTStaffID, Hours, "OT", CourseCode, CourseTitle, AmountOF_UNITA, AmountOF_HQ, AmountOF_HQPT, OAmountOF_L, OAmountOF_T));
+                }
+                if (CTStaffID != "")
+                {
+                    int Hours = CTAmountOF_L * 2 + CTAmountOF_T;
+                    dutylist.Add(new Duty(CTStaffID, Hours, "CT", CourseCode, CourseTitle, AmountOF_UNITA, AmountOF_HQ, AmountOF_HQPT, CTAmountOF_L, CTAmountOF_T));
+                }
+            }           
+
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                foreach (Duty i in dutylist)
+                {
+                    try
+                    {
+                        Staff_Duty d = new Staff_Duty
+                        {
+                            StaffID = i.StaffID,
+                            Hours = i.Hours,
+                            CourseType = i.CourseType,
+                            CourseCode = i.CourseCode,
+                            CourseName = i.CourseName,
+                            AmountOF_UNITA = i.AmountOF_UNITA,
+                            AmountOF_HQ = i.AmountOF_HQ,
+                            AmountOF_HQPT = i.AmountOF_HQPT,
+                            AmountOF_L = i.AmountOF_L,
+                            AmountOF_T = i.AmountOF_T
+                        };
+                        ctx.Staff_Duty.Add(d);
+                        ctx.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+        }
     }
 
     public class Duty

@@ -17,7 +17,7 @@
         <AssociationConnector Association="TFHRModel.FK_UserLogin_Staff" />
         <EntityTypeShape EntityType="TFHRModel.Log" Width="1.5" PointX="3.375" PointY="6.5" />
         <AssociationConnector Association="TFHRModel.FK_Log_Staff" />
-        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="6.875" PointY="5" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Staff_Duty" />
       </Diagram>
     </edmx:Diagrams>

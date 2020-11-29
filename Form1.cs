@@ -206,6 +206,28 @@ namespace SEHS
         private void button3_Click(object sender, EventArgs e)
         {
             hideAllAndShow(2);
+            
+
+            
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                var stf = ctx.Staff;
+                var cc = ctx.Staff_Duty;
+                var stflist = (from i1 in stf
+                               join i2 in cc on i1.UID equals i2.StaffID
+                               select new
+                               {
+                                   CourseCode = i2.CourseCode,
+                                   CourseTile = i2.CourseName,
+                                   UID = i1.UID,
+                                   Classes = string.Concat(i2.AmountOF_L, "L", i2.AmountOF_T, "T"),
+                                   Normal_or_OT = i2.CourseType                                   
+                               }
+                               ); ;
+
+                userControl3.dataGridView1.DataSource = stflist.ToList();
+            };
+
         }
         private void button4_Click(object sender, EventArgs e)
         {

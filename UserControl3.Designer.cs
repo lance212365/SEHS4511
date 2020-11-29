@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Download_Central_Feeder = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -42,14 +45,39 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Generate Central Feeder File";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(52, 96);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(663, 278);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // Download_Central_Feeder
+            // 
+            this.Download_Central_Feeder.BackColor = System.Drawing.Color.DodgerBlue;
+            this.Download_Central_Feeder.Font = new System.Drawing.Font("標楷體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Download_Central_Feeder.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.Download_Central_Feeder.Location = new System.Drawing.Point(52, 396);
+            this.Download_Central_Feeder.Name = "Download_Central_Feeder";
+            this.Download_Central_Feeder.Size = new System.Drawing.Size(176, 58);
+            this.Download_Central_Feeder.TabIndex = 4;
+            this.Download_Central_Feeder.Text = "Download Central Feeder";
+            this.Download_Central_Feeder.UseVisualStyleBackColor = false;
+            this.Download_Central_Feeder.Click += new System.EventHandler(this.Download_Central_Feeder_Click);
+            // 
             // UserControl3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.Download_Central_Feeder);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl3";
             this.Size = new System.Drawing.Size(798, 510);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -58,5 +86,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button Download_Central_Feeder;
     }
 }
