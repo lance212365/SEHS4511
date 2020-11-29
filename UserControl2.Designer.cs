@@ -32,6 +32,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Download_dept = new System.Windows.Forms.Button();
             this.upload_dept = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,11 +77,22 @@
             this.upload_dept.UseVisualStyleBackColor = true;
             this.upload_dept.Click += new System.EventHandler(this.upload_dept_Click);
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(657, 494);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(80, 51);
+            this.Save.TabIndex = 11;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.upload_dept);
             this.Controls.Add(this.Download_dept);
             this.Controls.Add(this.dataGridView1);
@@ -99,5 +111,6 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button Download_dept;
         private System.Windows.Forms.Button upload_dept;
+        private System.Windows.Forms.Button Save;
     }
 }
