@@ -128,5 +128,15 @@ namespace SEHS
         {
 
         }
+        private void logChangeFilter()
+        {
+            TFHREntities ctx = new TFHREntities();
+            var stflist = tableQuery(ctx);
+            if (comboBox5.Text != "" && textBox1.Text != "")
+            {
+                stflist = stflist.Where($"{comboBox5.Text}.Contains(\"{textBox1.Text}\")").Select(s => s);
+            }
+            dataGridView1.DataSource = stflist.ToList();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Net;
 using System.Net.Sockets;
 
@@ -15,6 +17,8 @@ namespace SEHS
 {
     public partial class login : Form
     {
+        public static byte[] KEY = Encoding.ASCII.GetBytes(Properties.Settings.Default.key);
+        public static byte[] IV = Encoding.ASCII.GetBytes(Properties.Settings.Default.iv);
         public login()
         {
             InitializeComponent();
@@ -43,51 +47,48 @@ namespace SEHS
             string Password = $"{cTextBox2.Text}";
             using(TFHREntities ctx = new TFHREntities())
             {
-                if (cTextBox1.Text == ""||cTextBox2.Text == "")
+                var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                var realpw = Decrypt(Convert.FromBase64String(info.Password), KEY, IV);
+                if (UID == "" || Password == "")
                 {
                   MessageBox.Show("Please enter your UID and Password.");
                 }
                 else
                 {
-                    var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                    if (info != null)
+                        if(info.UID == UID && realpw == Password)
                         {
-                        if(info.UID == UID && info.Password == Password.ToMD5())
+                            Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                            Log l = new Log
                             {
-                                Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                                Log l = new Log
-                                {
-                                    StaffID = user.UID,
-                                    DateTime = DateTime.Now,
-                                    Type = "login",
-                                    Detail = "Login Success",
-                                    Host = GetLocalIPAddress()
-                                };
-                                ctx.Log.Add(l);
-                                ctx.SaveChanges();
+                                StaffID = user.UID,
+                                DateTime = DateTime.Now,
+                                Type = "login",
+                                Detail = "Login Success",
+                                Host = GetLocalIPAddress()
+                            };
+                            ctx.Log.Add(l);
+                            ctx.SaveChanges();
                             string name = user.FirstName;
-                                string sur = user.LastName;
-                                MessageBox.Show($"Welcome! {name}!",
-                                "Note",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                                this.Hide();
-                                Form1 Form = new Form1();
-                                Form.buttonUserName.Text = $"{name} {sur}";
-                                Form.ShowDialog();
-                                cTextBox1.Text = null;
-                                cTextBox2.Text = null;
-                                this.Show();
-                            }
-                            else
-                            {
-                            MessageBox.Show("Wrong Password!");     
-                            }
+                            string sur = user.LastName;
+                            MessageBox.Show($"Welcome! {name}!",
+                            "Note",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                            this.Hide();
+                            Form1 Form = new Form1();
+                            Form.buttonUserName.Text = $"{name} {sur}";
+                            Form.ShowDialog();
+                            cTextBox1.Text = null;
+                            cTextBox2.Text = null;
+                            this.Show();
                         }
-                    else
-                    {
-                        MessageBox.Show("Wrong UID");
-                    }
+                        else if(realpw != Password)
+                        {
+                            MessageBox.Show("Wrong Password!");     
+                        } else if(UID != info.UID)
+                        {
+                            MessageBox.Show("Wrong UID");
+                        }
                 }
             }
         }
@@ -144,6 +145,48 @@ namespace SEHS
             {
                 button1.PerformClick();
             }
+        }
+        static string Decrypt(byte[] cipherText, byte[] Key, byte[] IV)
+        {
+            // Check arguments.
+            if (cipherText == null || cipherText.Length <= 0)
+                throw new ArgumentNullException("cipherText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            // Declare the string used to hold
+            // the decrypted text.
+            string plaintext = null;
+
+            // Create an Aes object
+            // with the specified key and IV.
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+
+                // Create a decryptor to perform the stream transform.
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting stream
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+
+            return plaintext;
         }
     }
     public static class MD5Extensions

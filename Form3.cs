@@ -13,9 +13,11 @@ namespace SEHS
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        UserControl1 uc1;
+        public Form3(UserControl1 uc)
         {
             InitializeComponent();
+            uc1 = uc;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -82,6 +84,7 @@ namespace SEHS
                     result.Status = texts[5];
                     ctx.SaveChanges();
                     MessageBox.Show("Updated Database.");
+                    uc1.tableChange(null, null);
                     this.Close();
                 }
             } 
