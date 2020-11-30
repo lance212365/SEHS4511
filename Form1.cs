@@ -353,10 +353,6 @@ namespace SEHS
             View.BackColor = Color.Transparent;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         public UserControl[] UserControlList()
         {
             return new UserControl[] {
@@ -405,16 +401,6 @@ namespace SEHS
             button4.BackColor = Color.Transparent;
         }
 
-        private void userControl4_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             isToLogin = true;
@@ -427,16 +413,6 @@ namespace SEHS
             {
                 System.Windows.Forms.Application.Exit();
             }
-        }
-
-        private void buttonUserName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

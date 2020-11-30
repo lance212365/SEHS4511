@@ -123,5 +123,10 @@ namespace SEHS
             }
             dataGridView1.DataSource = stflist.ToList();
         }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
