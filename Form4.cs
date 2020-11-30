@@ -13,9 +13,11 @@ namespace SEHS
     public partial class Form4 : Form
     {
         public string cur;
-        public Form4(string UID)
+        UserControl1 uc1;
+        public Form4(UserControl1 uc,string UID)
         {
             InitializeComponent();
+            uc1 = uc;
             cur = UID;
         }
 
@@ -34,12 +36,13 @@ namespace SEHS
             var std = ctx.Staff_Duty.Where(b=>b.StaffID ==cur).Select(s=>s).ToArray();
             if (rem != null)
             {
-                MessageBox.Show("User Deleting.");
                 stf.Remove(rem);
                 ctx.UserLogin.Remove(usl);
                 ctx.Staff_Duty.RemoveRange(std);
                 ctx.SaveChanges();
                 MessageBox.Show("User Deleted.");
+                uc1.tableChange(null, null);
+                Close();
             }
 
         }

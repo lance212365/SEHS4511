@@ -52,6 +52,7 @@
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDeleteData = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.buttonCreate = new System.Windows.Forms.Button();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.staffBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
@@ -336,6 +337,22 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.tableChange);
             // 
+            // buttonCreate
+            // 
+            this.buttonCreate.BackColor = System.Drawing.Color.YellowGreen;
+            this.buttonCreate.Cursor = System.Windows.Forms.Cursors.Default;
+            this.buttonCreate.FlatAppearance.BorderSize = 0;
+            this.buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCreate.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.buttonCreate.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonCreate.Location = new System.Drawing.Point(602, 684);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(110, 32);
+            this.buttonCreate.TabIndex = 11;
+            this.buttonCreate.Text = "Create";
+            this.buttonCreate.UseVisualStyleBackColor = false;
+            this.buttonCreate.Click += new System.EventHandler(this.button1_Click);
+            // 
             // staffBindingSource
             // 
             this.staffBindingSource.DataSource = typeof(SEHS.Staff);
@@ -349,6 +366,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonDeleteData);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.dataGridView2);
@@ -390,5 +408,6 @@
         public System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button buttonCreate;
     }
 }

@@ -36,5 +36,29 @@ namespace SEHS.Properties {
                 this["connString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0wcQ7CdIR9V6Ms/6+WdITOl7rwyirsxx")]
+        public string key {
+            get {
+                return ((string)(this["key"]));
+            }
+            set {
+                this["key"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ETdbICkqUT6F98nY")]
+        public string iv {
+            get {
+                return ((string)(this["iv"]));
+            }
+            set {
+                this["iv"] = value;
+            }
+        }
     }
 }
