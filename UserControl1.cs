@@ -98,7 +98,8 @@ namespace SEHS
                 {
                     col.Add(x.Name);
                 }
-                stflist = stflist.OrderBy(col[col.IndexOf(txt[3])]);
+                stflist = (checkBox2.Checked == false) ?
+                    stflist.OrderBy(col[col.IndexOf(txt[3])]) : stflist.OrderBy(col[col.IndexOf(txt[3])]+ " descending");
             }
             if (txt[4] != "")
             {
@@ -171,12 +172,81 @@ namespace SEHS
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            textBox1.Text = "";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            TFHREntities ctx = new TFHREntities();
+            var stflist = tableQuery(ctx);
+            if (comboBox5.Text != "" && textBox1.Text != "")
+            {
+                stflist = stflist.Where($"{comboBox5.Text}.Contains(\"{textBox1.Text}\")").Select(s => s);
+            }
+            dataGridView2.DataSource = stflist.ToList();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            var upt = new Form3();
+            if(dataGridView2.SelectedRows.Count != 0)
+            {
+                TFHREntities ctx = new TFHREntities();
+                var stf = ctx.Staff;
+                var tb = ctx.Title;
+                var stflist = tableQuery(ctx);
+                var index = dataGridView2.SelectedCells[0].RowIndex;
+                var selectRow = dataGridView2.Rows[index];
+                var cUID = selectRow.Cells["UID"].Value.ToString();
+                var wUID = stf.Where(w => w.UID == cUID);
+
+                var cT = wUID.Select(s => s.Title).FirstOrDefault().ToString();
+                upt.uidk.Text = cUID;
+                upt.titleb.Text = tb.Where($"TitleID = \"{cT}\"").Select(s=>s.Title1).FirstOrDefault().ToString();
+                upt.fname.Text = wUID.Select(s => s.FirstName).FirstOrDefault().ToString();
+                upt.lname.Text = wUID.Select(s => s.LastName).FirstOrDefault().ToString();
+                upt.centerb.Text = selectRow.Cells["Centre"].Value.ToString();
+                upt.trainerb.Text = selectRow.Cells["Role"].Value.ToString();
+                upt.statuses.Text  = selectRow.Cells["Status"].Value.ToString();
+
+                upt.titleb.Items.AddRange(tb.Select(s => s.Title1).Distinct().ToArray());
+                upt.centerb.Items.AddRange(stflist.Select(s => s.Centre).Distinct().ToArray());
+                upt.trainerb.Items.AddRange(stflist.Select(s => s.Role).Distinct().ToArray());
+                upt.statuses.Items.AddRange(stflist.Select(s => s.Status).Distinct().ToArray());
+
+                upt.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Pick a row first.");
+            }
+        }
+
+        private void buttonDeleteData_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView2.SelectedRows.Count != 0)
+            {
+                var index = dataGridView2.SelectedCells[0].RowIndex;
+                var selectRow = dataGridView2.Rows[index];
+                var cUID = selectRow.Cells["UID"].Value.ToString();
+                var del = new Form4(cUID);
+                del.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Pick a row first.");
+            }
         }
     }
 }
