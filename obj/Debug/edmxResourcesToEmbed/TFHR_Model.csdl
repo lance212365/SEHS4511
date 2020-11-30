@@ -31,26 +31,12 @@
     <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CentreID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="CostCentre" Relationship="Self.FK_Staff_CostCentre" FromRole="Staff" ToRole="CostCentre" />
-    <NavigationProperty Name="Role1" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
-    <NavigationProperty Name="Title1" Relationship="Self.FK_Staff_Title" FromRole="Staff" ToRole="Title" />
-  </EntityType>
-  <EntityType Name="Staff_Duty">
-    <Key>
-      <PropertyRef Name="DutyID" />
-    </Key>
-    <Property Name="DutyID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="StaffID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Hours" Type="Double" />
-    <Property Name="CourseType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CourseCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="CourseName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="AmountOF_UNITA" Type="Int32" />
-    <Property Name="AmountOF_HQ" Type="Int32" />
-    <Property Name="AmountOF_HQPT" Type="Int32" />
-    <Property Name="AmountOF_L" Type="Int32" />
-    <Property Name="AmountOF_T" Type="Int32" />
+    <NavigationProperty Name="CostCentre" Relationship="Self.FK_Staff_CostCentre" FromRole="Staff" ToRole="CostCentre" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+    <NavigationProperty Name="Title1" Relationship="Self.FK_Staff_Title" FromRole="Staff" ToRole="Title" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+    <NavigationProperty Name="UserLogin" Relationship="TFHRModel.FK_UserLogin_Staff" FromRole="Staff" ToRole="UserLogin" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+    <NavigationProperty Name="Log" Relationship="TFHRModel.FK_Log_Staff" FromRole="Staff" ToRole="Log" />
+    <NavigationProperty Name="Staff_Duty" Relationship="TFHRModel.FK_Staff_Staff_Duty" FromRole="Staff" ToRole="Staff_Duty" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -111,7 +97,6 @@
     <EntitySet Name="CostCentre" EntityType="Self.CostCentre" />
     <EntitySet Name="Role" EntityType="Self.Role" />
     <EntitySet Name="Staff" EntityType="Self.Staff" />
-    <EntitySet Name="Staff_Duty" EntityType="Self.Staff_Duty" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Title" EntityType="Self.Title" />
     <AssociationSet Name="FK_Staff_CostCentre" Association="Self.FK_Staff_CostCentre">
@@ -156,6 +141,21 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="UserLogin" EntityType="TFHRModel.UserLogin" />
+    <AssociationSet Name="FK_UserLogin_Staff" Association="TFHRModel.FK_UserLogin_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="UserLogin" EntitySet="UserLogin" />
+    </AssociationSet>
+    <EntitySet Name="Log" EntityType="TFHRModel.Log" />
+    <AssociationSet Name="FK_Log_Staff" Association="TFHRModel.FK_Log_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <EntitySet Name="Staff_Duty" EntityType="TFHRModel.Staff_Duty" />
+    <AssociationSet Name="FK_Staff_Staff_Duty" Association="TFHRModel.FK_Staff_Staff_Duty">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Staff_Duty" EntitySet="Staff_Duty" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -168,4 +168,77 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Staff" Relationship="TFHRModel.FK_UserLogin_Staff" FromRole="UserLogin" ToRole="Staff" />
+  </EntityType>
+  <Association Name="FK_UserLogin_Staff">
+    <End Type="TFHRModel.Staff" Role="Staff" Multiplicity="1" />
+    <End Type="TFHRModel.UserLogin" Role="UserLogin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="UserLogin">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="StaffID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Host" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Staff" Relationship="TFHRModel.FK_Log_Staff" FromRole="Log" ToRole="Staff" />
+  </EntityType>
+  <Association Name="FK_Log_Staff">
+    <End Type="TFHRModel.Staff" Role="Staff" Multiplicity="1" />
+    <End Type="TFHRModel.Log" Role="Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Staff_Duty">
+    <Key>
+      <PropertyRef Name="DutyID" />
+    </Key>
+    <Property Name="DutyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StaffID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hours" Type="Double" />
+    <Property Name="CourseType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AmountOF_UNITA" Type="Int32" />
+    <Property Name="AmountOF_HQ" Type="Int32" />
+    <Property Name="AmountOF_HQPT" Type="Int32" />
+    <Property Name="AmountOF_L" Type="Int32" />
+    <Property Name="AmountOF_T" Type="Int32" />
+    <NavigationProperty Name="Staff" Relationship="TFHRModel.FK_Staff_Staff_Duty" FromRole="Staff_Duty" ToRole="Staff" />
+  </EntityType>
+  <Association Name="FK_Staff_Staff_Duty">
+    <End Type="TFHRModel.Staff" Role="Staff" Multiplicity="1" />
+    <End Type="TFHRModel.Staff_Duty" Role="Staff_Duty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Staff_Duty">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

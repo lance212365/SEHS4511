@@ -138,6 +138,8 @@
             this.cTextBox1.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
             this.cTextBox1.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
             this.cTextBox1.WaterMarkForeColor = System.Drawing.Color.Gray;
+            this.cTextBox1.TextChanged += new System.EventHandler(this.cTextBox1_TextChanged);
+            this.cTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cTextBox1_KeyDown);
             // 
             // cTextBox2
             // 
@@ -153,6 +155,8 @@
             this.cTextBox2.WaterMarkActiveForeColor = System.Drawing.Color.Gray;
             this.cTextBox2.WaterMarkFont = new System.Drawing.Font("Century Gothic", 18F);
             this.cTextBox2.WaterMarkForeColor = System.Drawing.Color.Gray;
+            this.cTextBox2.TextChanged += new System.EventHandler(this.cTextBox2_TextChanged);
+            this.cTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cTextBox2_KeyDown);
             // 
             // pictureBox1
             // 
@@ -215,7 +219,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
-        private ChreneLib.Controls.TextBoxes.CTextBox cTextBox2;
+        public ChreneLib.Controls.TextBoxes.CTextBox cTextBox1;
+        public ChreneLib.Controls.TextBoxes.CTextBox cTextBox2;
     }
 }

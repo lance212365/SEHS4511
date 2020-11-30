@@ -9,6 +9,17 @@
     <Property Name="CentreName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Detail" Type="text" Nullable="false" />
+    <Property Name="Host" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="RoleID" />
@@ -29,18 +40,17 @@
     <Property Name="Role" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CentreID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Staff_Duty">
     <Key>
       <PropertyRef Name="DutyID" />
     </Key>
-    <Property Name="DutyID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="StaffID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DutyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Hours" Type="float" />
     <Property Name="CourseType" Type="nvarchar(max)" />
-    <Property Name="CourseCode" Type="nchar" MaxLength="10" />
-    <Property Name="CourseName" Type="nchar" MaxLength="10" />
+    <Property Name="CourseCode" Type="nvarchar(max)" />
+    <Property Name="CourseName" Type="nvarchar(max)" />
     <Property Name="AmountOF_UNITA" Type="int" />
     <Property Name="AmountOF_HQ" Type="int" />
     <Property Name="AmountOF_HQPT" Type="int" />
@@ -65,6 +75,25 @@
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Log_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Log" Type="Self.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Staff_CostCentre">
     <End Role="CostCentre" Type="Self.CostCentre" Multiplicity="1" />
     <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -89,6 +118,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Staff_Staff_Duty">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Staff_Duty" Type="Self.Staff_Duty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Staff_Duty">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Staff_Title">
     <End Role="Title" Type="Self.Title" Multiplicity="1" />
     <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -98,6 +139,18 @@
       </Principal>
       <Dependent Role="Staff">
         <PropertyRef Name="Title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLogin_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="UserLogin">
+        <PropertyRef Name="UID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -134,11 +187,17 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="TFHRModelStoreContainer">
     <EntitySet Name="CostCentre" EntityType="Self.CostCentre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff_Duty" EntityType="Self.Staff_Duty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Log_Staff" Association="Self.FK_Log_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
     <AssociationSet Name="FK_Staff_CostCentre" Association="Self.FK_Staff_CostCentre">
       <End Role="CostCentre" EntitySet="CostCentre" />
       <End Role="Staff" EntitySet="Staff" />
@@ -147,9 +206,17 @@
       <End Role="Role" EntitySet="Role" />
       <End Role="Staff" EntitySet="Staff" />
     </AssociationSet>
+    <AssociationSet Name="FK_Staff_Staff_Duty" Association="Self.FK_Staff_Staff_Duty">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Staff_Duty" EntitySet="Staff_Duty" />
+    </AssociationSet>
     <AssociationSet Name="FK_Staff_Title" Association="Self.FK_Staff_Title">
       <End Role="Title" EntitySet="Title" />
       <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLogin_Staff" Association="Self.FK_UserLogin_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="UserLogin" EntitySet="UserLogin" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

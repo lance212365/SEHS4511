@@ -28,37 +28,39 @@ namespace SEHS
             hideAll();
         }
 
+        public class Table
+        {
+            public string UID { get; set; }
+            public string Name { get; set; }
+            public string Centre { get; set; }
+            public string Role { get; set; }
+            public string Status { get; set; }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             hideAllAndShow(0);
             using (TFHREntities ctx = new TFHREntities())
             {
-                var stflist = ctx.Staff.ToList();
-                userControl1.dataGridView2.DataSource = stflist;
+                var stf = ctx.Staff;
+                var cc = ctx.CostCentre;
+                var role = ctx.Role;
+                var title = ctx.Title;
+                var stflist = (from i1 in stf
+                               join i2 in cc on i1.CentreID equals i2.CentreID
+                               join i3 in role on i1.Role equals i3.RoleID
+                               join i4 in title on i1.Title equals i4.TitleID
+                               select new Table
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i4.Title1, ". ", i1.FirstName, " ", i1.LastName),
+                                   Centre = i2.CentreName,
+                                   Role = i3.RoleName,
+                                   Status = i1.Status
+                               }
+                               );
+
+                userControl1.dataGridView2.DataSource = stflist.ToList();
             }
-            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
-            //{
-            //    SqlCommand cmd = connection.CreateCommand();
-            //    try
-            //    {
-            //        cmd.CommandText = query;
-            //        connection.Open();
-            //        cmd.ExecuteScalar();
-            //        System.Data.DataTable dt = new System.Data.DataTable();
-            //        SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //        da.Fill(dt);
-            //        userControl1.dataGridView2.DataSource = dt;
-            //        da.Dispose();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(cmd.CommandText,
-            //                   "SQL Error",
-            //                   MessageBoxButtons.OK,
-            //                   MessageBoxIcon.Error);
-            //    }
-            //    connection.Close();
-            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -67,8 +69,10 @@ namespace SEHS
             //hideAll(); // Still need to hide all usercontrol
 
             userControl2.dataGridView1.Show();
-            String path = Directory.GetCurrentDirectory();
+            //String path = Directory.GetCurrentDirectory();
             String fname = "http://dev.elderlyinhome.org/Seed.xlsx";
+            
+
 
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fname);
@@ -89,7 +93,11 @@ namespace SEHS
             {
                 for (int j = 1; j <= colCount; j++)
                 {
-                    //write the value to the Grid 
+
+
+                    //write the value to the Grid  
+
+
                     if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
                     {
                         if (xlRange.Cells[i, j].Value2.ToString() == "End")
@@ -101,6 +109,7 @@ namespace SEHS
                         {
                             userControl2.dataGridView1.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                         }
+
                     }
                     else
                     {
@@ -174,31 +183,21 @@ namespace SEHS
         private DataGridViewComboBoxCell loadcombobox(int row,int col)
         {
             DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
-            string query = "SELECT CONCAT(FirstName,LastName)AS Name FROM TFHR.dbo.Staff";
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            using (TFHREntities ctx = new TFHREntities())
             {
-                SqlCommand cmd = connection.CreateCommand();
-                try
-                {
-                    cmd.CommandText = query;
-                    connection.Open();
-                    cmd.ExecuteScalar();
-                    System.Data.DataTable dt = new System.Data.DataTable();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    comboBoxCell.DataSource = dt;
-                    comboBoxCell.DisplayMember = "Name";
-                    comboBoxCell.ValueMember = "Name";
-                    da.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(cmd.CommandText,
-                               "SQL Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
-                }
-                connection.Close();
+                var stf = ctx.Staff;
+                var stflist = (from i1 in stf
+                               select new
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i1.FirstName, " ", i1.LastName),
+                                 
+                               }
+                               );
+
+                comboBoxCell.DataSource = stflist.ToList();
+                comboBoxCell.DisplayMember = "Name";
+                comboBoxCell.ValueMember = "UID";
             }
             return comboBoxCell;
         }
@@ -207,6 +206,28 @@ namespace SEHS
         private void button3_Click(object sender, EventArgs e)
         {
             hideAllAndShow(2);
+            
+
+            
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                var stf = ctx.Staff;
+                var cc = ctx.Staff_Duty;
+                var stflist = (from i1 in stf
+                               join i2 in cc on i1.UID equals i2.StaffID
+                               select new
+                               {
+                                   CourseCode = i2.CourseCode,
+                                   CourseTile = i2.CourseName,
+                                   UID = i1.UID,
+                                   Classes = string.Concat(i2.AmountOF_L, "L", i2.AmountOF_T, "T"),
+                                   Normal_or_OT = i2.CourseType                                   
+                               }
+                               ); ;
+
+                userControl3.dataGridView1.DataSource = stflist.ToList();
+            };
+
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -293,6 +314,7 @@ namespace SEHS
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             isToLogin = true;
+            new login().Show();
             this.Close();
         }
 
@@ -302,6 +324,11 @@ namespace SEHS
             {
                 System.Windows.Forms.Application.Exit();
             }
+        }
+
+        private void buttonUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
