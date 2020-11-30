@@ -38,6 +38,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonDeleteData = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.staffBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -120,6 +120,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.checkBox2.Location = new System.Drawing.Point(676, 114);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(201, 26);
+            this.checkBox2.TabIndex = 13;
+            this.checkBox2.Text = "Descendent Order";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.tableChange);
             // 
             // textBox1
             // 
@@ -324,18 +336,6 @@
             this.buttonDeleteData.Text = "Delete";
             this.buttonDeleteData.UseVisualStyleBackColor = false;
             this.buttonDeleteData.Click += new System.EventHandler(this.buttonDeleteData_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Century Gothic", 14F);
-            this.checkBox2.Location = new System.Drawing.Point(676, 114);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(201, 26);
-            this.checkBox2.TabIndex = 13;
-            this.checkBox2.Text = "Descendent Order";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.tableChange);
             // 
             // buttonCreate
             // 

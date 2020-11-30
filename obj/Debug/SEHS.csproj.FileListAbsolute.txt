@@ -83,7 +83,6 @@ C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\EntityFramework.xml
 C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Lance\source\repos\SEHS\SEHS\bin\Debug\zh-Hant\EntityFramework.resources.dll
-C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csprojAssemblyReference.cache
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.ResolveComReference.cache
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.login.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csproj.CopyComplete

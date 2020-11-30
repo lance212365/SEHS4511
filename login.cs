@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SEHS
 {
@@ -47,51 +49,46 @@ namespace SEHS
             {
                 var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
                 var realpw = Decrypt(Convert.FromBase64String(info.Password), KEY, IV);
-                if (info.UID == UID && realpw == Password)
+                if (UID == "" || Password == "")
                 {
                   MessageBox.Show("Please enter your UID and Password.");
                 }
                 else
                 {
-                    var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                    if (info != null)
+                        if(info.UID == UID && realpw == Password)
                         {
-                        if(info.UID == UID && info.Password == Password.ToMD5())
+                            Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                            Log l = new Log
                             {
-                                Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                                Log l = new Log
-                                {
-                                    StaffID = user.UID,
-                                    DateTime = DateTime.Now,
-                                    Type = "login",
-                                    Detail = "Login Success",
-                                    Host = GetLocalIPAddress()
-                                };
-                                ctx.Log.Add(l);
-                                ctx.SaveChanges();
+                                StaffID = user.UID,
+                                DateTime = DateTime.Now,
+                                Type = "login",
+                                Detail = "Login Success",
+                                Host = GetLocalIPAddress()
+                            };
+                            ctx.Log.Add(l);
+                            ctx.SaveChanges();
                             string name = user.FirstName;
-                                string sur = user.LastName;
-                                MessageBox.Show($"Welcome! {name}!",
-                                "Note",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                                this.Hide();
-                                Form1 Form = new Form1();
-                                Form.buttonUserName.Text = $"{name} {sur}";
-                                Form.ShowDialog();
-                                cTextBox1.Text = null;
-                                cTextBox2.Text = null;
-                                this.Show();
-                            }
-                            else
-                            {
-                            MessageBox.Show("Wrong Password!");     
-                            }
+                            string sur = user.LastName;
+                            MessageBox.Show($"Welcome! {name}!",
+                            "Note",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                            this.Hide();
+                            Form1 Form = new Form1();
+                            Form.buttonUserName.Text = $"{name} {sur}";
+                            Form.ShowDialog();
+                            cTextBox1.Text = null;
+                            cTextBox2.Text = null;
+                            this.Show();
                         }
-                    else
-                    {
-                        MessageBox.Show("Wrong UID");
-                    }
+                        else if(realpw != Password)
+                        {
+                            MessageBox.Show("Wrong Password!");     
+                        } else if(UID != info.UID)
+                        {
+                            MessageBox.Show("Wrong UID");
+                        }
                 }
             }
         }
