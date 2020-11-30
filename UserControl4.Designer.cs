@@ -109,6 +109,7 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(253, 30);
             this.comboBox5.TabIndex = 9;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             this.comboBox5.TextChanged += new System.EventHandler(this.tableChange);
             // 
             // label6

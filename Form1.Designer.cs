@@ -224,7 +224,6 @@
             this.buttonUserName.TabIndex = 2;
             this.buttonUserName.Text = "button1";
             this.buttonUserName.UseVisualStyleBackColor = false;
-            this.buttonUserName.Click += new System.EventHandler(this.buttonUserName_Click);
             // 
             // userControl4
             // 
@@ -234,7 +233,6 @@
             this.userControl4.Name = "userControl4";
             this.userControl4.Size = new System.Drawing.Size(1078, 730);
             this.userControl4.TabIndex = 1;
-            this.userControl4.Load += new System.EventHandler(this.userControl4_Load);
             // 
             // userControl3
             // 
@@ -280,7 +278,6 @@
             this.Name = "Form1";
             this.Text = "Talent Farm Data Manament System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
