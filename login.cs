@@ -45,17 +45,23 @@ namespace SEHS
             string query;
             string UID = $"{cTextBox1.Text}";
             string Password = $"{cTextBox2.Text}";
-            using(TFHREntities ctx = new TFHREntities())
+            using (TFHREntities ctx = new TFHREntities())
             {
-                var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                var realpw = Decrypt(Convert.FromBase64String(info.Password), KEY, IV);
                 if (UID == "" || Password == "")
                 {
-                  MessageBox.Show("Please enter your UID and Password.");
+                    MessageBox.Show("Please enter your UID and Password.");
                 }
                 else
                 {
-                        if(info.UID == UID && realpw == Password)
+                    var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                    if (info == null)
+                    {
+                        MessageBox.Show("Wrong UID");
+                    }
+                    else
+                    {
+                        var realpw = Decrypt(Convert.FromBase64String(info.Password), KEY, IV);
+                        if (info.UID == UID && realpw == Password)
                         {
                             Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
                             Log l = new Log
@@ -82,13 +88,11 @@ namespace SEHS
                             cTextBox2.Text = null;
                             this.Show();
                         }
-                        else if(realpw != Password)
+                        else if (realpw != Password)
                         {
-                            MessageBox.Show("Wrong Password!");     
-                        } else if(UID != info.UID)
-                        {
-                            MessageBox.Show("Wrong UID");
+                            MessageBox.Show("Wrong Password!");
                         }
+                    }
                 }
             }
         }
