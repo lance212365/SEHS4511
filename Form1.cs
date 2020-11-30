@@ -13,6 +13,8 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Data.Entity;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SEHS
 {
@@ -58,11 +60,59 @@ namespace SEHS
                                    Status = i1.Status
                                }
                                );
-
+                                Log l = new Log
+                                {
+                                    StaffID = CheckUID(buttonUserName.Text),
+                                    DateTime = DateTime.Now,
+                                    Type = "Read",
+                                    Detail = "View User Table",
+                                    Host = GetLocalIPAddress()
+                                };
+                                ctx.Log.Add(l);
+                                ctx.SaveChanges();
                 userControl1.dataGridView2.DataSource = stflist.ToList();
             }
         }
 
+        private string CheckUID(string Name)
+        {
+            string UID = "";
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                var stf = ctx.Staff;
+                var stflist = (from i1 in stf
+                               select new
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i1.FirstName, " ", i1.LastName),
+                               }
+                               );
+                foreach (var name in stflist)
+                {
+                    if (Name == name.Name)
+                    {
+                        UID = name.UID;
+                    }
+                }
+
+
+            }
+
+            return UID;
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             hideAllAndShow(1);
@@ -171,9 +221,21 @@ namespace SEHS
             xlApp.Quit();
             Marshal.ReleaseComObject(xlApp);
 
-            
 
-            
+            using (TFHREntities ctx = new TFHREntities())
+            {               
+                Log l = new Log
+                {
+                    StaffID = CheckUID(buttonUserName.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Read",
+                    Detail = "Read Seed Feeder",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+                ctx.SaveChanges();                
+            }
+
         }
         public class ClassName
         {
@@ -225,6 +287,17 @@ namespace SEHS
                                }
                                ); ;
 
+                Log l = new Log
+                {
+                    StaffID = CheckUID(buttonUserName.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Read",
+                    Detail = "Read Dept Feeder Data",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+                ctx.SaveChanges();
+
                 userControl3.dataGridView1.DataSource = stflist.ToList();
             };
 
@@ -232,6 +305,37 @@ namespace SEHS
         private void button4_Click(object sender, EventArgs e)
         {
             hideAllAndShow(3);
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                var log = ctx.Log;
+                var stf = ctx.Staff;
+                var loglist = (from i1 in log
+                               join i2 in stf on i1.StaffID equals i2.UID
+                               select new
+                               {
+                                   LogID = i1.Id,
+                                   User = string.Concat(i2.FirstName," ",i2.LastName),
+                                   DateTime = i1.DateTime.ToString(),
+                                   Type = i1.Type,
+                                   Detail = i1.Detail,
+                                   Host = i1.Host
+                               }
+                               ); ;
+
+                Log l = new Log
+                {
+                    StaffID = CheckUID(buttonUserName.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Read",
+                    Detail = "Read Log",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+                ctx.SaveChanges();
+
+                userControl4.dataGridView1.DataSource = loglist.ToList();
+            };
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -249,10 +353,6 @@ namespace SEHS
             View.BackColor = Color.Transparent;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         public UserControl[] UserControlList()
         {
             return new UserControl[] {
@@ -301,20 +401,9 @@ namespace SEHS
             button4.BackColor = Color.Transparent;
         }
 
-        private void userControl4_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             isToLogin = true;
-            new login().Show();
             this.Close();
         }
 
@@ -324,11 +413,6 @@ namespace SEHS
             {
                 System.Windows.Forms.Application.Exit();
             }
-        }
-
-        private void buttonUserName_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -18,12 +18,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
-          <Property Name="Type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Detail" Type="text" Nullable="false" />
-          <Property Name="Host" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Host" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -423,9 +423,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="StaffID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Host" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Host" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff" Relationship="TFHRModel.FK_Log_Staff" FromRole="Log" ToRole="Staff" />
         </EntityType>
         <Association Name="FK_Log_Staff">

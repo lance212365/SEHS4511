@@ -123,9 +123,9 @@
             this.button4.ForeColor = System.Drawing.Color.Transparent;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.Location = new System.Drawing.Point(0, 455);
+            this.button4.Location = new System.Drawing.Point(0, 453);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(275, 98);
+            this.button4.Size = new System.Drawing.Size(275, 85);
             this.button4.TabIndex = 3;
             this.button4.Text = "Log";
             this.button4.UseVisualStyleBackColor = false;
@@ -176,9 +176,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(190, 140);
+            this.pictureBox1.Location = new System.Drawing.Point(150, 70);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(588, 413);
+            this.pictureBox1.Size = new System.Drawing.Size(734, 609);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -224,7 +224,6 @@
             this.buttonUserName.TabIndex = 2;
             this.buttonUserName.Text = "button1";
             this.buttonUserName.UseVisualStyleBackColor = false;
-            this.buttonUserName.Click += new System.EventHandler(this.buttonUserName_Click);
             // 
             // userControl4
             // 
@@ -234,7 +233,6 @@
             this.userControl4.Name = "userControl4";
             this.userControl4.Size = new System.Drawing.Size(1078, 730);
             this.userControl4.TabIndex = 1;
-            this.userControl4.Load += new System.EventHandler(this.userControl4_Load);
             // 
             // userControl3
             // 
@@ -249,7 +247,7 @@
             this.userControl2.BackColor = System.Drawing.Color.Transparent;
             this.userControl2.Location = new System.Drawing.Point(0, 0);
             this.userControl2.Name = "userControl2";
-            this.userControl2.Size = new System.Drawing.Size(1078, 730);
+            this.userControl2.Size = new System.Drawing.Size(1278, 830);
             this.userControl2.TabIndex = 4;
             // 
             // userControl1

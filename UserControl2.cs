@@ -11,14 +11,17 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SEHS
 {
     public partial class UserControl2 : UserControl
-    {
+    {  
         public UserControl2()
         {
             InitializeComponent();
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -28,7 +31,7 @@ namespace SEHS
 
         private void button1_Click(object sender, EventArgs e)
         {
-                
+            MessageBox.Show("Downloading...Please wait");
             Excel.Application XApp = new Excel.Application();
             Excel.Application NewApp = new Excel.Application();
             object missing = System.Reflection.Missing.Value;
@@ -140,7 +143,7 @@ namespace SEHS
 
             //iXWbk.Save();
             iXWbk.Close();
-                oXWbk.SaveAs("C:\\Users\\Jimwa\\Desktop\\Dept_Feeder",Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,true,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges,Type.Missing,Type.Missing);
+                oXWbk.SaveAs("D:\\Dept_Feeder",Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,true,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges,Type.Missing,Type.Missing);
                 oXWbk.Close();
                 XApp.Application.Quit();
                 NewApp.Application.Quit();
@@ -149,6 +152,24 @@ namespace SEHS
                 Marshal.ReleaseComObject(oXWbk);
                 Marshal.ReleaseComObject(XApp);
                 Marshal.ReleaseComObject(NewApp);
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                Form1 parentForm = (this.ParentForm as Form1);
+                
+                var form1 = parentForm.buttonUserName;
+                              
+                Log l = new Log
+                {
+                    
+                    StaffID = CheckUID(form1.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Export",
+                    Detail = $"Export Dept Feeder at D:\\Dept_Feeder",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+                ctx.SaveChanges();
+            }
             DialogResult a = MessageBox.Show("done");
         }
 
@@ -287,47 +308,7 @@ namespace SEHS
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    if (i > 3 && j == 3)
-                                    {
-                                        AmountOF_UNITA = 0;
-                                    }
-                                    else if (i > 3 && j == 4)
-                                    {
-                                        AmountOF_HQ = 0;
-                                    }
-                                    else if (i > 3 && j == 5)
-                                    {
-                                        AmountOF_HQPT = 0;
-                                    }
-                                    else if (i > 3 && j == 7)
-                                    {
-                                        if(StaffID == "")
-                                        {
-                                            StaffID = "";
-                                        }
-                                    }                                   
-                                    else if (i > 3 && j == 9)
-                                    {
-                                        if (StaffID == "")
-                                        {
-                                            StaffID = "";
-                                        }
-                                    }                                   
-                                    else if (i > 3 && j == 11)
-                                    {
-                                        TempStaffID = "";
-                                    }                                    
-                                    else if (i > 3 && j == 13)
-                                    {
-                                        OTStaffID = "";
-                                    }                                    
-                                    else if (i > 3 && j == 15)
-                                    {
-                                        CTStaffID = "";
-                                    }                                   
-                                }                                
+                                                               
                             }
                             if (loop)
                             {
@@ -378,6 +359,22 @@ namespace SEHS
 
                         using (TFHREntities ctx = new TFHREntities())
                         {
+                            Form1 parentForm = (this.ParentForm as Form1);
+
+                            var form1 = parentForm.buttonUserName;
+                            Log l = new Log
+                            {
+
+                                StaffID = CheckUID(form1.Text),
+                                DateTime = DateTime.Now,
+                                Type = "Upload",
+                                Detail = $"Upload Dept Feeder and insert record",
+                                Host = GetLocalIPAddress()
+                            };
+                            ctx.Log.Add(l);
+
+                            ctx.SaveChanges();
+
                             foreach (Duty i in dutylist)
                             {
                                 try
@@ -395,9 +392,23 @@ namespace SEHS
                                         AmountOF_L = i.AmountOF_L,
                                         AmountOF_T = i.AmountOF_T
                                     };
+                                                                    
+
+                                    Log l2 = new Log
+                                    {
+
+                                        StaffID = CheckUID(form1.Text),
+                                        DateTime = DateTime.Now,
+                                        Type = "Insert",
+                                        Detail = $"Inser record ( {i.StaffID},{i.Hours}{i.CourseType},{i.CourseCode},{i.CourseName},{i.AmountOF_UNITA},{i.AmountOF_HQ},{i.AmountOF_HQPT},{i.AmountOF_L},{i.AmountOF_T})",
+                                        Host = GetLocalIPAddress()
+                                    };
+                                    ctx.Log.Add(l2);                                                                     
                                     ctx.Staff_Duty.Add(d);
                                     ctx.SaveChanges();
-                                }catch(Exception ex)
+                                    MessageBox.Show("Done Insert success");
+                                }
+                                catch(Exception ex)
                                 {
                                     MessageBox.Show(ex.Message.ToString());
                                 }                               
@@ -441,6 +452,19 @@ namespace SEHS
             }
 
             return UID;
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -563,48 +587,7 @@ namespace SEHS
                                 CTAmountOF_T = int.Parse(words[1]);
                             }
                         }
-                    }
-                    else
-                    {
-                        if (i > 3 && j == 3)
-                        {
-                            AmountOF_UNITA = 0;
-                        }
-                        else if (i > 3 && j == 4)
-                        {
-                            AmountOF_HQ = 0;
-                        }
-                        else if (i > 3 && j == 5)
-                        {
-                            AmountOF_HQPT = 0;
-                        }
-                        else if (i > 3 && j == 7)
-                        {
-                            if (StaffID == "")
-                            {
-                                StaffID = "";
-                            }
-                        }
-                        else if (i > 3 && j == 9)
-                        {
-                            if (StaffID == "")
-                            {
-                                StaffID = "";
-                            }
-                        }
-                        else if (i > 3 && j == 11)
-                        {
-                            TempStaffID = "";
-                        }
-                        else if (i > 3 && j == 13)
-                        {
-                            OTStaffID = "";
-                        }
-                        else if (i > 3 && j == 15)
-                        {
-                            CTStaffID = "";
-                        }
-                    }
+                    }                    
                 }
                 if (loop)
                 {
@@ -634,6 +617,21 @@ namespace SEHS
 
             using (TFHREntities ctx = new TFHREntities())
             {
+                Form1 parentForm = (this.ParentForm as Form1);
+
+                var form1 = parentForm.buttonUserName;
+                Log l = new Log
+                {
+
+                    StaffID = CheckUID(form1.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Save",
+                    Detail = $"Save Data Grid View",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+
+                ctx.SaveChanges();
                 foreach (Duty i in dutylist)
                 {
                     try
@@ -651,8 +649,20 @@ namespace SEHS
                             AmountOF_L = i.AmountOF_L,
                             AmountOF_T = i.AmountOF_T
                         };
+
+                        Log l2 = new Log
+                        {
+
+                            StaffID = CheckUID(form1.Text),
+                            DateTime = DateTime.Now,
+                            Type = "Insert",
+                            Detail = $"Inser record ( {i.StaffID},{i.Hours}{i.CourseType},{i.CourseCode},{i.CourseName},{i.AmountOF_UNITA},{i.AmountOF_HQ},{i.AmountOF_HQPT},{i.AmountOF_L},{i.AmountOF_T})",
+                            Host = GetLocalIPAddress()
+                        };
+                        ctx.Log.Add(l2);
                         ctx.Staff_Duty.Add(d);
                         ctx.SaveChanges();
+                        MessageBox.Show("Save Success");
                     }
                     catch (Exception ex)
                     {
@@ -660,6 +670,11 @@ namespace SEHS
                     }
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

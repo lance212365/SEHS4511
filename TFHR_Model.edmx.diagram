@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="84b33475bb544a9097526d4536e0e1c1" Name="Diagram1">
-        <EntityTypeShape EntityType="TFHRModel.CostCentre" Width="1.5" PointX="4.375" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TFHRModel.Role" Width="1.5" PointX="6.375" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TFHRModel.CostCentre" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TFHRModel.Role" Width="1.5" PointX="4.375" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TFHRModel.Staff" Width="1.5" PointX="1.125" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TFHRModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="2.375" IsExpanded="false" />
-        <EntityTypeShape EntityType="TFHRModel.Title" Width="1.5" PointX="4.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TFHRModel.sysdiagrams" Width="1.5" PointX="13.125" PointY="3.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="TFHRModel.Title" Width="1.5" PointX="2.875" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="TFHRModel.FK_Staff_CostCentre" ManuallyRouted="false" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Role" ManuallyRouted="false" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Title" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TFHRModel.UserLogin" Width="1.5" PointX="1.125" PointY="5.5" />
+        <EntityTypeShape EntityType="TFHRModel.UserLogin" Width="1.5" PointX="1" PointY="4.625" />
         <AssociationConnector Association="TFHRModel.FK_UserLogin_Staff" />
-        <EntityTypeShape EntityType="TFHRModel.Log" Width="1.5" PointX="3.375" PointY="6.5" />
+        <EntityTypeShape EntityType="TFHRModel.Log" Width="1.5" PointX="4.75" PointY="3.625" />
         <AssociationConnector Association="TFHRModel.FK_Log_Staff" />
-        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="6.875" PointY="5" />
+        <EntityTypeShape EntityType="TFHRModel.Staff_Duty" Width="1.5" PointX="6.625" PointY="1.125" />
         <AssociationConnector Association="TFHRModel.FK_Staff_Staff_Duty" />
       </Diagram>
     </edmx:Diagrams>

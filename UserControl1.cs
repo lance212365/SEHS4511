@@ -225,6 +225,7 @@ namespace SEHS
                 upt.statuses.Items.AddRange(stflist.Select(s => s.Status).Distinct().ToArray());
 
                 upt.ShowDialog();
+                this.tableChange(null, new EventArgs()) ;
             }
             else
             {
