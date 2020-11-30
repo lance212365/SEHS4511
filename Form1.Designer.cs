@@ -249,7 +249,7 @@
             this.userControl2.BackColor = System.Drawing.Color.Transparent;
             this.userControl2.Location = new System.Drawing.Point(0, 0);
             this.userControl2.Name = "userControl2";
-            this.userControl2.Size = new System.Drawing.Size(1078, 730);
+            this.userControl2.Size = new System.Drawing.Size(1278, 830);
             this.userControl2.TabIndex = 4;
             // 
             // userControl1

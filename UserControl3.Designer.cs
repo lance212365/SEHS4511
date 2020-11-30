@@ -44,6 +44,7 @@
             this.label1.Size = new System.Drawing.Size(473, 39);
             this.label1.TabIndex = 2;
             this.label1.Text = "Generate Central Feeder File";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dataGridView1
             // 
@@ -51,17 +52,17 @@
             this.dataGridView1.Location = new System.Drawing.Point(52, 96);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(663, 278);
+            this.dataGridView1.Size = new System.Drawing.Size(995, 464);
             this.dataGridView1.TabIndex = 3;
             // 
             // Download_Central_Feeder
             // 
             this.Download_Central_Feeder.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Download_Central_Feeder.Font = new System.Drawing.Font("標楷體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Download_Central_Feeder.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.Download_Central_Feeder.Location = new System.Drawing.Point(52, 396);
+            this.Download_Central_Feeder.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.Download_Central_Feeder.ForeColor = System.Drawing.Color.Transparent;
+            this.Download_Central_Feeder.Location = new System.Drawing.Point(52, 577);
             this.Download_Central_Feeder.Name = "Download_Central_Feeder";
-            this.Download_Central_Feeder.Size = new System.Drawing.Size(176, 58);
+            this.Download_Central_Feeder.Size = new System.Drawing.Size(283, 61);
             this.Download_Central_Feeder.TabIndex = 4;
             this.Download_Central_Feeder.Text = "Download Central Feeder";
             this.Download_Central_Feeder.UseVisualStyleBackColor = false;
@@ -76,7 +77,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl3";
-            this.Size = new System.Drawing.Size(798, 510);
+            this.Size = new System.Drawing.Size(1050, 730);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

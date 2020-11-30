@@ -31,7 +31,7 @@ namespace SEHS
 
         private void button1_Click(object sender, EventArgs e)
         {
-                
+            MessageBox.Show("Downloading...Please wait");
             Excel.Application XApp = new Excel.Application();
             Excel.Application NewApp = new Excel.Application();
             object missing = System.Reflection.Missing.Value;
@@ -670,6 +670,11 @@ namespace SEHS
                     }
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 
