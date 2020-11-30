@@ -124,3 +124,7 @@ C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.exe
 C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.pdb
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.Form3.resources
 C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.Form4.resources
+C:\Users\yeung\Source\Repos\SEHS4511\bin\Debug\System.Linq.Dynamic.Core.pdb
+C:\Users\yeung\Source\Repos\SEHS4511\bin\Debug\System.Linq.Dynamic.Core.xml
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Form3.resources
+C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Form4.resources

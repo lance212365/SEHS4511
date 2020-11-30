@@ -314,7 +314,6 @@ namespace SEHS
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             isToLogin = true;
-            new login().Show();
             this.Close();
         }
 

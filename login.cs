@@ -41,31 +41,42 @@ namespace SEHS
             string Password = $"{cTextBox2.Text}";
             using(TFHREntities ctx = new TFHREntities())
             {
-                var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                if(info.UID == UID && info.Password == Password)
+                if (cTextBox1.Text == ""||cTextBox2.Text == "")
                 {
-                    Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                    string name = user.FirstName;
-                    string sur = user.LastName;
-                    MessageBox.Show($"Welcome! {name}!",
-                    "Note",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    Form1 Form = new Form1();
-                    Form.buttonUserName.Text = $"{name} {sur}";
-                    Form.Show();
-                    this.Hide();
-                } else
-                {
-                    MessageBox.Show("Wrong UID or Password!");
+                  MessageBox.Show("Please enter your UID and Password.");
                 }
-            }
-            if (cTextBox1.Text == "")
-            {
-                MessageBox.Show("Please enter your UID.");
-            }
-            else
-            {
+                else
+                {
+                    var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                    if (info != null)
+                        {
+                        if(info.UID == UID && info.Password == Password.ToMD5())
+                            {
+                                Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
+                                string name = user.FirstName;
+                                string sur = user.LastName;
+                                MessageBox.Show($"Welcome! {name}!",
+                                "Note",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                                this.Hide();
+                                Form1 Form = new Form1();
+                                Form.buttonUserName.Text = $"{name} {sur}";
+                                Form.ShowDialog();
+                                cTextBox1.Text = null;
+                                cTextBox2.Text = null;
+                                this.Show();
+                            }
+                            else
+                            {
+                            MessageBox.Show("Wrong Password!");     
+                            }
+                        }
+                    else
+                    {
+                        MessageBox.Show("Wrong UID");
+                    }
+                }
             }
         }
 
@@ -107,6 +118,27 @@ namespace SEHS
             if (e.KeyCode == Keys.Enter)
             {
                 button1.PerformClick();
+            }
+        }
+    }
+    public static class MD5Extensions
+    {
+        public static string ToMD5(this string str)
+        {
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                //將字串編碼成 UTF8 位元組陣列
+                var bytes = Encoding.UTF8.GetBytes(str);
+
+                //取得雜湊值位元組陣列
+                var hash = cryptoMD5.ComputeHash(bytes);
+
+                //取得 MD5
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+
+                return md5;
             }
         }
     }
