@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SEHS
 {
@@ -53,7 +55,17 @@ namespace SEHS
                         if(info.UID == UID && info.Password == Password.ToMD5())
                             {
                                 Staff user = ctx.Staff.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
-                                string name = user.FirstName;
+                                Log l = new Log
+                                {
+                                    StaffID = user.UID,
+                                    DateTime = DateTime.Now,
+                                    Type = "login",
+                                    Detail = "Login Success",
+                                    Host = GetLocalIPAddress()
+                                };
+                                ctx.Log.Add(l);
+                                ctx.SaveChanges();
+                            string name = user.FirstName;
                                 string sur = user.LastName;
                                 MessageBox.Show($"Welcome! {name}!",
                                 "Note",
@@ -83,6 +95,19 @@ namespace SEHS
         private void cTextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
         private void cTextBox2_KeyDown(object sender, KeyEventArgs e)

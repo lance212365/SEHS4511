@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SEHS
 {
@@ -67,7 +69,65 @@ namespace SEHS
             Marshal.ReleaseComObject(oXWbk);
            
             Marshal.ReleaseComObject(NewApp);
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                Form1 parentForm = (this.ParentForm as Form1);
+
+                var form1 = parentForm.buttonUserName;
+                Log l = new Log
+                {
+
+                    StaffID = CheckUID(form1.Text),
+                    DateTime = DateTime.Now,
+                    Type = "Export",
+                    Detail = $"Export Dept Feeder at C:\\Users\\Jimwa\\Desktop\\Central_Feeder",
+                    Host = GetLocalIPAddress()
+                };
+                ctx.Log.Add(l);
+
+                ctx.SaveChanges();
+            }
             DialogResult a = MessageBox.Show("done");
+        }
+
+        private string CheckUID(string Name)
+        {
+            string UID = "";
+            using (TFHREntities ctx = new TFHREntities())
+            {
+                var stf = ctx.Staff;
+                var stflist = (from i1 in stf
+                               select new
+                               {
+                                   UID = i1.UID,
+                                   Name = string.Concat(i1.FirstName, " ", i1.LastName),
+                               }
+                               );
+                foreach (var name in stflist)
+                {
+                    if (Name == name.Name)
+                    {
+                        UID = name.UID;
+                    }
+                }
+
+
+            }
+
+            return UID;
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
     }
 }

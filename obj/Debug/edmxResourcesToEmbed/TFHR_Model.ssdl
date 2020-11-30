@@ -13,12 +13,12 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DateTime" Type="datetime" Nullable="false" />
-    <Property Name="Type" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Detail" Type="text" Nullable="false" />
-    <Property Name="Host" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Host" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>

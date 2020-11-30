@@ -123,9 +123,9 @@
             this.button4.ForeColor = System.Drawing.Color.Transparent;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.Location = new System.Drawing.Point(0, 455);
+            this.button4.Location = new System.Drawing.Point(0, 453);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(275, 98);
+            this.button4.Size = new System.Drawing.Size(275, 85);
             this.button4.TabIndex = 3;
             this.button4.Text = "Log";
             this.button4.UseVisualStyleBackColor = false;
