@@ -54,37 +54,53 @@
             this.dataGridView1.Location = new System.Drawing.Point(33, 95);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(705, 380);
+            this.dataGridView1.Size = new System.Drawing.Size(1017, 511);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Download_dept
             // 
-            this.Download_dept.Location = new System.Drawing.Point(33, 493);
+            this.Download_dept.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.Download_dept.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Download_dept.FlatAppearance.BorderSize = 0;
+            this.Download_dept.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.Download_dept.ForeColor = System.Drawing.Color.Transparent;
+            this.Download_dept.Location = new System.Drawing.Point(33, 627);
             this.Download_dept.Name = "Download_dept";
-            this.Download_dept.Size = new System.Drawing.Size(161, 51);
+            this.Download_dept.Size = new System.Drawing.Size(243, 51);
             this.Download_dept.TabIndex = 9;
             this.Download_dept.Text = "Download Dept Feeder";
-            this.Download_dept.UseVisualStyleBackColor = true;
+            this.Download_dept.UseVisualStyleBackColor = false;
             this.Download_dept.Click += new System.EventHandler(this.button1_Click);
             // 
             // upload_dept
             // 
-            this.upload_dept.Location = new System.Drawing.Point(235, 493);
+            this.upload_dept.BackColor = System.Drawing.Color.DarkGreen;
+            this.upload_dept.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.upload_dept.FlatAppearance.BorderSize = 0;
+            this.upload_dept.Font = new System.Drawing.Font("Berlin Sans FB", 16F);
+            this.upload_dept.ForeColor = System.Drawing.Color.Transparent;
+            this.upload_dept.Location = new System.Drawing.Point(299, 626);
             this.upload_dept.Name = "upload_dept";
-            this.upload_dept.Size = new System.Drawing.Size(148, 53);
+            this.upload_dept.Size = new System.Drawing.Size(242, 53);
             this.upload_dept.TabIndex = 10;
             this.upload_dept.Text = "Upload Dept Feeder";
-            this.upload_dept.UseVisualStyleBackColor = true;
+            this.upload_dept.UseVisualStyleBackColor = false;
             this.upload_dept.Click += new System.EventHandler(this.upload_dept_Click);
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(657, 494);
+            this.Save.BackColor = System.Drawing.Color.Maroon;
+            this.Save.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Save.FlatAppearance.BorderSize = 0;
+            this.Save.Font = new System.Drawing.Font("Berlin Sans FB", 18F);
+            this.Save.ForeColor = System.Drawing.Color.Transparent;
+            this.Save.Location = new System.Drawing.Point(916, 624);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(80, 51);
+            this.Save.Size = new System.Drawing.Size(134, 56);
             this.Save.TabIndex = 11;
             this.Save.Text = "Save";
-            this.Save.UseVisualStyleBackColor = true;
+            this.Save.UseVisualStyleBackColor = false;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // UserControl2
@@ -98,7 +114,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl2";
-            this.Size = new System.Drawing.Size(878, 668);
+            this.Size = new System.Drawing.Size(1078, 730);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
