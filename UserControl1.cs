@@ -148,7 +148,7 @@ namespace SEHS
 
         private void buttonQuit_Click_1(object sender, EventArgs e)
         {
-            comboBox1.Text = comboBox2.Text = comboBox3.Text = comboBox4.Text = comboBox5.Text= "";
+            textBox1.Text  = comboBox1.Text = comboBox2.Text = comboBox3.Text = comboBox4.Text = comboBox5.Text= "";
             textBox1.Enabled = false;
         }
 
@@ -220,9 +220,9 @@ namespace SEHS
                 upt.statuses.Text  = selectRow.Cells["Status"].Value.ToString();
 
                 upt.titleb.Items.AddRange(tb.Select(s => s.Title1).Distinct().ToArray());
-                upt.centerb.Items.AddRange(stflist.Select(s => s.Centre).Distinct().ToArray());
-                upt.trainerb.Items.AddRange(stflist.Select(s => s.Role).Distinct().ToArray());
-                upt.statuses.Items.AddRange(stflist.Select(s => s.Status).Distinct().ToArray());
+                upt.centerb.Items.AddRange(ctx.CostCentre.Select(s => s.CentreName).Distinct().ToArray());
+                upt.trainerb.Items.AddRange(ctx.Role.Select(s => s.RoleName).Distinct().ToArray());
+                upt.statuses.Items.AddRange(new string[]{"active","inactive" });
 
                 upt.ShowDialog();
                 this.tableChange(null, new EventArgs()) ;
