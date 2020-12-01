@@ -70,7 +70,7 @@ namespace SEHS
                 return col[i];
             }
         }
-        private void tableChange(object sender, EventArgs e)
+        public void tableChange(object sender, EventArgs e)
         {
             List<string> txt = new List<string>
             {
@@ -198,7 +198,7 @@ namespace SEHS
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            var upt = new Form3();
+            var upt = new Form3(this);
             if(dataGridView2.SelectedRows.Count != 0)
             {
                 TFHREntities ctx = new TFHREntities();
@@ -241,13 +241,23 @@ namespace SEHS
                 var index = dataGridView2.SelectedCells[0].RowIndex;
                 var selectRow = dataGridView2.Rows[index];
                 var cUID = selectRow.Cells["UID"].Value.ToString();
-                var del = new Form4(cUID);
+                var del = new Form4(this,cUID);
                 del.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Pick a row first.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var cet = new Formcreate(this);
+            cet.ShowDialog();
+        }
+        public void triggerChange()
+        {
+            tableChange(null, null);
         }
     }
 }
