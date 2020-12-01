@@ -131,3 +131,7 @@ C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Form3.resources
 C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Form4.resources
 C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.FormConfirmation.resources
 C:\Users\yeung\Source\Repos\SEHS4511\obj\Debug\SEHS.Formcreate.resources
+C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Form3.resources
+C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Form4.resources
+C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.FormConfirmation.resources
+C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Formcreate.resources

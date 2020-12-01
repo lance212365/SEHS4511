@@ -166,6 +166,7 @@
             this.buttonNo.Name = "buttonNo";
             this.buttonNo.Size = new System.Drawing.Size(125, 57);
             this.buttonNo.TabIndex = 10;
+            this.buttonNo.Text = "Cancel";
             this.buttonNo.UseVisualStyleBackColor = false;
             this.buttonNo.Click += new System.EventHandler(this.buttonNo_Click);
             // 

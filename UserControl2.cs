@@ -143,7 +143,7 @@ namespace SEHS
 
             //iXWbk.Save();
             iXWbk.Close();
-                oXWbk.SaveAs("D:\\Dept_Feeder",Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,true,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges,Type.Missing,Type.Missing);
+                oXWbk.SaveAs("D:\\project\\Dept_Feeder", Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,false,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
                 oXWbk.Close();
                 XApp.Application.Quit();
                 NewApp.Application.Quit();
@@ -164,7 +164,7 @@ namespace SEHS
                     StaffID = CheckUID(form1.Text),
                     DateTime = DateTime.Now,
                     Type = "Export",
-                    Detail = $"Export Dept Feeder at D:\\Dept_Feeder",
+                    Detail = $"Export Dept Feeder at D:\\project",
                     Host = GetLocalIPAddress()
                 };
                 ctx.Log.Add(l);
@@ -188,7 +188,7 @@ namespace SEHS
                     try
                     {
                         Excel.Workbook iXWbk = XApp.Workbooks.Open(filePath); ;
-                        Excel.Worksheet iWSht = iXWbk.Worksheets["Sheet1"];
+                        Excel.Worksheet iWSht = iXWbk.Worksheets[1];
                         Excel.Range xlRange = iWSht.UsedRange;
 
                         int rowCount = 16;
@@ -406,12 +406,13 @@ namespace SEHS
                                     ctx.Log.Add(l2);                                                                     
                                     ctx.Staff_Duty.Add(d);
                                     ctx.SaveChanges();
-                                    MessageBox.Show("Done Insert success");
+                                   
                                 }
                                 catch(Exception ex)
                                 {
                                     MessageBox.Show(ex.Message.ToString());
-                                }                               
+                                }
+                                MessageBox.Show("Done Insert success");
                             }
                         }
                     }
@@ -662,12 +663,13 @@ namespace SEHS
                         ctx.Log.Add(l2);
                         ctx.Staff_Duty.Add(d);
                         ctx.SaveChanges();
-                        MessageBox.Show("Save Success");
+                        
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message.ToString());
                     }
+                    MessageBox.Show("Save Success");
                 }
             }
         }
