@@ -60,7 +60,32 @@ namespace SEHS
                 }
             }
 
-            oXWbk.SaveAs("D:\\project\\Central_Feeder", Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, Excel.XlSaveAsAccessMode.xlShared, Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Custom Description";
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                var sSelectedPath = fbd.SelectedPath;
+                oXWbk.SaveAs($"{sSelectedPath}Central_Feeder", Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+                using (TFHREntities ctx = new TFHREntities())
+                {
+                    Form1 parentForm = (this.ParentForm as Form1);
+
+                    var form1 = parentForm.buttonUserName;
+
+                    Log l = new Log
+                    {
+
+                        StaffID = CheckUID(form1.Text),
+                        DateTime = DateTime.Now,
+                        Type = "Export",
+                        Detail = $"Export Central Feeder at {sSelectedPath}",
+                        Host = GetLocalIPAddress()
+                    };
+                    ctx.Log.Add(l);
+                    ctx.SaveChanges();
+                }
+            }           
             oXWbk.Close();
            
             NewApp.Application.Quit();
@@ -69,24 +94,7 @@ namespace SEHS
             Marshal.ReleaseComObject(oXWbk);
            
             Marshal.ReleaseComObject(NewApp);
-            using (TFHREntities ctx = new TFHREntities())
-            {
-                Form1 parentForm = (this.ParentForm as Form1);
-
-                var form1 = parentForm.buttonUserName;
-                Log l = new Log
-                {
-
-                    StaffID = CheckUID(form1.Text),
-                    DateTime = DateTime.Now,
-                    Type = "Export",
-                    Detail = $"Export Dept Feeder at D:\\project",
-                    Host = GetLocalIPAddress()
-                };
-                ctx.Log.Add(l);
-
-                ctx.SaveChanges();
-            }
+           
             DialogResult a = MessageBox.Show("done");
         }
 

@@ -140,10 +140,36 @@ namespace SEHS
                 }// end for c
             }
 
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Custom Description";
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                var sSelectedPath = fbd.SelectedPath;              
+                oXWbk.SaveAs($"{sSelectedPath}Dept_Feeder", Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+                using (TFHREntities ctx = new TFHREntities())
+                {
+                    Form1 parentForm = (this.ParentForm as Form1);
+
+                    var form1 = parentForm.buttonUserName;
+
+                    Log l = new Log
+                    {
+
+                        StaffID = CheckUID(form1.Text),
+                        DateTime = DateTime.Now,
+                        Type = "Export",
+                        Detail = $"Export Dept Feeder at {sSelectedPath}",
+                        Host = GetLocalIPAddress()
+                    };
+                    ctx.Log.Add(l);
+                    ctx.SaveChanges();
+                }
+            }
 
             //iXWbk.Save();
             iXWbk.Close();
-                oXWbk.SaveAs("D:\\project\\Dept_Feeder", Excel.XlFileFormat.xlWorkbookDefault,Type.Missing,Type.Missing,false,false,Excel.XlSaveAsAccessMode.xlShared,Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+                
                 oXWbk.Close();
                 XApp.Application.Quit();
                 NewApp.Application.Quit();
@@ -152,24 +178,7 @@ namespace SEHS
                 Marshal.ReleaseComObject(oXWbk);
                 Marshal.ReleaseComObject(XApp);
                 Marshal.ReleaseComObject(NewApp);
-            using (TFHREntities ctx = new TFHREntities())
-            {
-                Form1 parentForm = (this.ParentForm as Form1);
-                
-                var form1 = parentForm.buttonUserName;
-                              
-                Log l = new Log
-                {
-                    
-                    StaffID = CheckUID(form1.Text),
-                    DateTime = DateTime.Now,
-                    Type = "Export",
-                    Detail = $"Export Dept Feeder at D:\\project",
-                    Host = GetLocalIPAddress()
-                };
-                ctx.Log.Add(l);
-                ctx.SaveChanges();
-            }
+           
             DialogResult a = MessageBox.Show("done");
         }
 
