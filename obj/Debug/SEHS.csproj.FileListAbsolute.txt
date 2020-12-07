@@ -135,3 +135,5 @@ C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Form3.resources
 C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Form4.resources
 C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.FormConfirmation.resources
 C:\Users\Jimwa\Documents\SEHS4511\obj\Debug\SEHS.Formcreate.resources
+C:\Users\Lance\source\repos\SEHS\SEHS\obj\Debug\SEHS.csprojAssemblyReference.cache
+
