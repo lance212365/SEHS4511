@@ -60,7 +60,7 @@ namespace SEHS
                 }
             }
 
-            oXWbk.SaveAs("D:\\Central_Feeder", Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, Excel.XlSaveAsAccessMode.xlShared, Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+            oXWbk.SaveAs("D:\\project\\Central_Feeder", Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, Excel.XlSaveAsAccessMode.xlShared, Excel.XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
             oXWbk.Close();
            
             NewApp.Application.Quit();
@@ -80,7 +80,7 @@ namespace SEHS
                     StaffID = CheckUID(form1.Text),
                     DateTime = DateTime.Now,
                     Type = "Export",
-                    Detail = $"Export Dept Feeder at C:\\Users\\Jimwa\\Desktop\\Central_Feeder",
+                    Detail = $"Export Dept Feeder at D:\\project",
                     Host = GetLocalIPAddress()
                 };
                 ctx.Log.Add(l);
