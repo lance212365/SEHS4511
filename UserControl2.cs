@@ -521,82 +521,91 @@ namespace SEHS
                         }
                         else
                         {
-                            if (i > 2 && j == 0)
+                            try
                             {
-                                CourseCode = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                if (i > 2 && j == 0)
+                                {
+                                    CourseCode = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 1)
+                                {
+                                    CourseTitle = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 2)
+                                {
+                                    AmountOF_UNITA = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                                }
+                                else if (i > 2 && j == 3)
+                                {
+                                    AmountOF_HQ = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                                }
+                                else if (i > 2 && j == 4)
+                                {
+                                    AmountOF_HQPT = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
+                                }
+                                else if (i > 2 && j == 6)
+                                {
+                                    StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 7)
+                                {
+                                    char[] delimiterChars = { 'L', 'T' };
+                                    string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                    AmountOF_L = int.Parse(words[0]);
+                                    AmountOF_T = int.Parse(words[1]);
+                                }
+                                else if (i > 2 && j == 8)
+                                {
+                                    StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 9)
+                                {
+                                    char[] delimiterChars = { 'L', 'T' };
+                                    string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                    AmountOF_L = int.Parse(words[0]);
+                                    AmountOF_T = int.Parse(words[1]);
+                                }
+                                else if (i > 2 && j == 10)
+                                {
+                                    TempStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 11)
+                                {
+                                    char[] delimiterChars = { 'L', 'T' };
+                                    string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                    TAmountOF_L = int.Parse(words[0]); ;
+                                    TAmountOF_T = int.Parse(words[1]);
+                                }
+                                else if (i > 2 && j == 12)
+                                {
+                                    OTStaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 13)
+                                {
+                                    char[] delimiterChars = { 'L', 'T' };
+                                    string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                    OAmountOF_L = int.Parse(words[0]);
+                                    OAmountOF_T = int.Parse(words[1]);
+                                }
+                                else if (i > 2 && j == 14)
+                                {
+                                    CTStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                }
+                                else if (i > 2 && j == 15)
+                                {
+                                    char[] delimiterChars = { 'L', 'T' };
+                                    string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
+                                    CTAmountOF_L = int.Parse(words[0]);
+                                    CTAmountOF_T = int.Parse(words[1]);
+                                }
                             }
-                            else if (i > 2 && j == 1)
+                            catch (FormatException e1)
                             {
-                                CourseTitle = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 2)
-                            {
-                                AmountOF_UNITA = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
-                            }
-                            else if (i > 2 && j == 3)
-                            {
-                                AmountOF_HQ = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
-                            }
-                            else if (i > 2 && j == 4)
-                            {
-                                AmountOF_HQPT = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
-                            }
-                            else if (i > 2 && j == 6)
-                            {
-                                StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 7)
-                            {
-                                char[] delimiterChars = { 'L', 'T' };
-                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
-                                AmountOF_L = int.Parse(words[0]);
-                                AmountOF_T = int.Parse(words[1]);
-                            }
-                            else if (i > 2 && j == 8)
-                            {
-                                StaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 9)
-                            {
-                                char[] delimiterChars = { 'L', 'T' };
-                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
-                                AmountOF_L = int.Parse(words[0]);
-                                AmountOF_T = int.Parse(words[1]);
-                            }
-                            else if (i > 2 && j == 10)
-                            {
-                                TempStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 11)
-                            {
-                                char[] delimiterChars = { 'L', 'T' };
-                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
-                                TAmountOF_L = int.Parse(words[0]); ;
-                                TAmountOF_T = int.Parse(words[1]);
-                            }
-                            else if (i > 2 && j == 12)
-                            {
-                                OTStaffID = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 13)
-                            {
-                                char[] delimiterChars = { 'L', 'T' };
-                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
-                                OAmountOF_L = int.Parse(words[0]);
-                                OAmountOF_T = int.Parse(words[1]);
-                            }
-                            else if (i > 2 && j == 14)
-                            {
-                                CTStaffID =dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else if (i > 2 && j == 15)
-                            {
-                                char[] delimiterChars = { 'L', 'T' };
-                                string[] words = dataGridView1.Rows[i].Cells[j].Value.ToString().Split(delimiterChars);
-                                CTAmountOF_L = int.Parse(words[0]);
-                                CTAmountOF_T = int.Parse(words[1]);
+                                MessageBox.Show("Please input in correct format.");
+                                return;
                             }
                         }
+
                     }                    
                 }
                 if (loop)

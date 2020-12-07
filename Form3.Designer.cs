@@ -76,6 +76,7 @@
             // 
             // titleb
             // 
+            this.titleb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.titleb.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.titleb.FormattingEnabled = true;
             this.titleb.Location = new System.Drawing.Point(193, 54);
@@ -97,6 +98,7 @@
             // 
             // trainerb
             // 
+            this.trainerb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.trainerb.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.trainerb.FormattingEnabled = true;
             this.trainerb.Location = new System.Drawing.Point(460, 125);
@@ -154,6 +156,7 @@
             // 
             // statuses
             // 
+            this.statuses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statuses.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.statuses.FormattingEnabled = true;
             this.statuses.Location = new System.Drawing.Point(701, 125);
@@ -174,6 +177,7 @@
             // 
             // centerb
             // 
+            this.centerb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.centerb.Font = new System.Drawing.Font("Century Gothic", 14F);
             this.centerb.FormattingEnabled = true;
             this.centerb.Location = new System.Drawing.Point(35, 125);

@@ -56,7 +56,7 @@ namespace SEHS
                     var info = ctx.UserLogin.Where(w => w.UID == UID).Select(s => s).FirstOrDefault();
                     if (info == null)
                     {
-                        MessageBox.Show("Wrong UID");
+                        MessageBox.Show("Incorrect UID");
                     }
                     else
                     {
@@ -90,7 +90,7 @@ namespace SEHS
                         }
                         else if (realpw != Password)
                         {
-                            MessageBox.Show("Wrong Password!");
+                            MessageBox.Show("Incorrect Password");
                         }
                     }
                 }

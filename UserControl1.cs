@@ -98,8 +98,15 @@ namespace SEHS
                 {
                     col.Add(x.Name);
                 }
-                stflist = (checkBox2.Checked == false) ?
-                    stflist.OrderBy(col[col.IndexOf(txt[3])]) : stflist.OrderBy(col[col.IndexOf(txt[3])]+ " descending");
+                try
+                {
+                    stflist = (checkBox2.Checked == false) ?
+                        stflist.OrderBy(col[col.IndexOf(txt[3])]) : stflist.OrderBy(col[col.IndexOf(txt[3])] + " descending");
+                }
+                catch (Exception e1)
+                {
+                    return;
+                }
             }
             if (txt[4] != "")
             {
@@ -191,7 +198,14 @@ namespace SEHS
             var stflist = tableQuery(ctx);
             if (comboBox5.Text != "" && textBox1.Text != "")
             {
-                stflist = stflist.Where($"{comboBox5.Text}.Contains(\"{textBox1.Text}\")").Select(s => s);
+                try
+                {
+                    stflist = stflist.Where($"{comboBox5.Text}.Contains(\"{textBox1.Text}\")").Select(s => s);
+                }
+                catch (Exception e2)
+                {
+                    return;
+                }
             }
             dataGridView2.DataSource = stflist.ToList();
         }

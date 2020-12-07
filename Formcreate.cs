@@ -63,7 +63,7 @@ namespace SEHS
             {
                 if (v.Text == "")
                 {
-                    missing += $"{v.Element} is Missing!!\n";
+                    missing += $"{v.Element} required.\n";
                 }
                 data.Add(v.Text);
             }
@@ -73,7 +73,7 @@ namespace SEHS
             }
             else if(Valis[5].Text != Valis[6].Text)
             {
-                MessageBox.Show("Password is not match!!");
+                MessageBox.Show("Password mismatch.");
             }
             else
             {

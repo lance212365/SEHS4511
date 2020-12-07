@@ -90,7 +90,7 @@ namespace SEHS
             } 
             else
             {
-                MessageBox.Show("You missed the field!! Please fill all the blank field!");
+                MessageBox.Show("Please fill all the blank field.");
             }
         }
     }
